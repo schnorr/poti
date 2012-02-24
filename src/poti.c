@@ -157,7 +157,7 @@ void pajeDefineContainerType(const char *alias,
                              const char *containerType,
                              const char *name)
 {
-  printf("%d %s %s %s\n",
+  printf("%d %s %s \"%s\"\n",
          PAJE_DefineContainerType,
          alias,
          containerType,
@@ -168,7 +168,7 @@ void pajeDefineStateType(const char *alias,
                          const char *containerType,
                          const char *name)
 {
-  printf("%d %s %s %s\n",
+  printf("%d %s %s \"%s\"\n",
          PAJE_DefineStateType,
          alias,
          containerType,
@@ -181,7 +181,7 @@ void pajeDefineLinkType(const char *alias,
                         const char *destContainerType,
                         const char *name)
 {
-  printf("%d %s %s %s %s %s\n",
+  printf("%d %s %s %s %s \"%s\"\n",
          PAJE_DefineLinkType,
          alias,
          containerType,
@@ -209,7 +209,7 @@ void pajeCreateContainer(double timestamp,
                          const char *container,
                          const char *name)
 {
-  printf("%d %.9f %s %s %s %s\n",
+  printf("%d %.9f %s %s %s \"%s\"\n",
          PAJE_CreateContainer,
          paje_event_timestamp(timestamp),
          alias,
@@ -219,7 +219,8 @@ void pajeCreateContainer(double timestamp,
 }
 
 void pajeDestroyContainer(double timestamp,
-                          const char *type, const char *container)
+                          const char *type,
+                          const char *container)
 {
   printf("%d %.9f %s %s\n",
          PAJE_DestroyContainer,
@@ -230,7 +231,8 @@ void pajeDestroyContainer(double timestamp,
 
 void pajeSetState(double timestamp,
                   const char *container,
-                  const char *type, const char *value)
+                  const char *type,
+                  const char *value)
 {
   printf("%d %.9f %s %s %s\n",
          PAJE_SetState,
