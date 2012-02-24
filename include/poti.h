@@ -16,6 +16,9 @@
 */
 #ifndef __POTI_H
 #define __POTI_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /* 
  * Function to generate the header 
