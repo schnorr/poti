@@ -1,7 +1,7 @@
 #ifndef _POTI_CONFIG_H
 #define _POTI_CONFIG_H
 
-#cmakedefine POTI_GITVERSION "@GITVERSION@"
-#cmakedefine POTI_GITDATE "@GITDATE@"
+#cmakedefine POTI_GITVERSION "@POTI_GITVERSION@"
+#cmakedefine POTI_GITDATE "@POTI_GITDATE@"
 
 #endif
