@@ -4,9 +4,12 @@ Poti
 Poti is a library to create trace files in the [Paje file
 format](http://paje.sf.net). You should not use it directly during the
 tracing of your application (I won't stop you from doing this if you
-want), but after traces are collected in your preferred file format
-(probably binary with memory buffers to avoid at a maximum the tracing
-intrusion).
+want). I recommend its use after traces are collected in your
+preferred file format (probably binary with memory buffers to avoid at
+a maximum the tracing intrusion).
+
+*The current version of Poti does not provide any kind of correctness
+verification in the parameters you pass for the library functions.*
 
 Dependencies
 ------------
