@@ -36,6 +36,10 @@ void pajeDefineLinkType(const char *alias,
                         const char *sourceContainerType,
                         const char *destContainerType,
                         const char *name);
+void pajeDefineEntityValue(const char *alias,
+                           const char *entityType,
+                           const char *name,
+                           const char *color);
 
 /*
  * Functions related to containers 

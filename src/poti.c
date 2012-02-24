@@ -190,6 +190,19 @@ void pajeDefineLinkType(const char *alias,
          name);
 }
 
+void pajeDefineEntityValue(const char *alias,
+                           const char *entityType,
+                           const char *name,
+                           const char *color)
+{
+  printf ("%d %s %s \"%s\" \"%s\"\n",
+          PAJE_DefineEntityValue,
+          alias,
+          entityType,
+          name,
+          color);
+}
+
 void pajeCreateContainer(double timestamp,
                          const char *alias,
                          const char *type,
