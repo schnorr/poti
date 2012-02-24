@@ -51,4 +51,5 @@ int main (int argc, char **argv)
   pajeDestroyContainer (1.23, "THREAD", "thread-1");
   pajeDestroyContainer (1.34, "ROOT", "root");
 
+  return 0;
 }
