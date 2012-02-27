@@ -53,12 +53,10 @@ void pajeDefineLinkType(const char *alias,
                         const char *sourceContainerType,
                         const char *destContainerType,
                         const char *name);
-
 void pajeDefineEventType(const char *alias,
-                        const char *containerType,
-                        const char *name,
-                        const char *color);
-
+                         const char *containerType,
+                         const char *name,
+                         const char *color);
 void pajeDefineEntityValue(const char *alias,
                            const char *entityType,
                            const char *name,
@@ -111,11 +109,9 @@ void pajeEndLink(double timestamp,
  * Functions related to variables, instantaneous events
  */
 void pajeNewEvent(double timestamp,
-                 const char *container,
-                 const char *type,
-                 const char *value );
-
-//Not implemented yet
+                  const char *container,
+                  const char *type,
+                  const char *value );
 
 #if defined(__cplusplus)
 }
