@@ -25,12 +25,34 @@ static double paje_event_timestamp(double timestamp)
   return timestamp - first_timestamp;
 }
 
+static FILE* paje_file = 0;
+
+int pajeOpen (const char* filename)
+{
+  FILE* fout = fopen(filename,"w");
+  if (fout ==0) return -1;
+  paje_file = fout;
+  return 0;
+}
+
+void pajeClose ()
+{
+  if (paje_file != stdout)
+  {
+    fclose( paje_file );
+  }
+  paje_file = 0;
+}
+
 
 void pajeHeader (void)
 {
-  printf ("#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
-  printf ("#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
-  printf("%%EventDef PajeDefineContainerType %d\n"
+  if (paje_file ==0)
+    paje_file = stdout;
+
+  fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
+  fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
+  fprintf(paje_file,"%%EventDef PajeDefineContainerType %d\n"
          "%%       Alias string\n"
          "%%       ContainerType string\n"
          "%%       Name string\n"
@@ -157,7 +179,7 @@ void pajeDefineContainerType(const char *alias,
                              const char *containerType,
                              const char *name)
 {
-  printf("%d %s %s \"%s\"\n",
+  fprintf(paje_file,"%d %s %s \"%s\"\n",
          PAJE_DefineContainerType,
          alias,
          containerType,
@@ -168,7 +190,7 @@ void pajeDefineStateType(const char *alias,
                          const char *containerType,
                          const char *name)
 {
-  printf("%d %s %s \"%s\"\n",
+  fprintf(paje_file,"%d %s %s \"%s\"\n",
          PAJE_DefineStateType,
          alias,
          containerType,
@@ -181,7 +203,7 @@ void pajeDefineLinkType(const char *alias,
                         const char *destContainerType,
                         const char *name)
 {
-  printf("%d %s %s %s %s \"%s\"\n",
+  fprintf(paje_file,"%d %s %s %s %s \"%s\"\n",
          PAJE_DefineLinkType,
          alias,
          containerType,
@@ -190,12 +212,25 @@ void pajeDefineLinkType(const char *alias,
          name);
 }
 
+void pajeDefineEventType(const char *alias,
+                        const char *containerType,
+                        const char *name,
+                        const char *color)
+{
+  fprintf(paje_file,"%d %s %s \"%s\" \"%s\"\n",
+         PAJE_DefineEventType,
+         alias,
+         containerType,
+         name,
+         color);
+}
+
 void pajeDefineEntityValue(const char *alias,
                            const char *entityType,
                            const char *name,
                            const char *color)
 {
-  printf ("%d %s %s \"%s\" \"%s\"\n",
+  fprintf(paje_file,"%d %s %s \"%s\" \"%s\"\n",
           PAJE_DefineEntityValue,
           alias,
           entityType,
@@ -209,7 +244,7 @@ void pajeCreateContainer(double timestamp,
                          const char *container,
                          const char *name)
 {
-  printf("%d %.9f %s %s %s \"%s\"\n",
+  fprintf(paje_file,"%d %.9f %s %s %s \"%s\"\n",
          PAJE_CreateContainer,
          paje_event_timestamp(timestamp),
          alias,
@@ -222,7 +257,7 @@ void pajeDestroyContainer(double timestamp,
                           const char *type,
                           const char *container)
 {
-  printf("%d %.9f %s %s\n",
+  fprintf(paje_file,"%d %.9f %s %s\n",
          PAJE_DestroyContainer,
          paje_event_timestamp(timestamp),
          type,
@@ -234,7 +269,7 @@ void pajeSetState(double timestamp,
                   const char *type,
                   const char *value)
 {
-  printf("%d %.9f %s %s %s\n",
+  fprintf(paje_file,"%d %.9f %s %s %s\n",
          PAJE_SetState,
          paje_event_timestamp(timestamp),
          container,
@@ -248,7 +283,7 @@ void pajePushState(double timestamp,
                    const char *type,
                    const char *value)
 {
-  printf("%d %.9f %s %s %s\n",
+  fprintf(paje_file,"%d %.9f %s %s %s\n",
          PAJE_PushState,
          paje_event_timestamp(timestamp),
          container,
@@ -260,7 +295,7 @@ void pajePopState(double timestamp,
                   const char *container,
                   const char *type)
 {
-  printf("%d %.9f %s %s\n",
+  fprintf(paje_file,"%d %.9f %s %s\n",
          PAJE_PopState,
          paje_event_timestamp(timestamp),
          container,
@@ -274,7 +309,7 @@ void pajeStartLink(double timestamp,
                    const char *value,
                    const char *key)
 {
-  printf("%d %.9f %s %s %s %s %s\n",
+  fprintf(paje_file,"%d %.9f %s %s %s %s %s\n",
          PAJE_StartLink,
          paje_event_timestamp(timestamp),
          container,
@@ -291,7 +326,7 @@ void pajeEndLink(double timestamp,
                  const char *value,
                  const char *key)
 {
-  printf("%d %.9f %s %s %s %s %s\n",
+  fprintf(paje_file,"%d %.9f %s %s %s %s %s\n",
          PAJE_EndLink,
          paje_event_timestamp(timestamp),
          container,
@@ -299,4 +334,17 @@ void pajeEndLink(double timestamp,
          endContainer,
          value,
          key);
+}
+
+void pajeNewEvent(double timestamp,
+                 const char *container,
+                 const char *type,
+                 const char *value )
+{
+  fprintf(paje_file,"%d %.9f %s %s %s\n",
+         PAJE_NewEvent,
+         paje_event_timestamp(timestamp),
+         container,
+         type,
+         value);
 }

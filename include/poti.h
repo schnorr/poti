@@ -20,7 +20,21 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* 
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
+/*
+ * Function to open output into a file, else output to stdout
+ */
+int pajeOpen (const char* filename);
+
+/*
+ * Function to close opened file
+ */
+void pajeClose ();
+
+/*
  * Function to generate the header 
  */
 void pajeHeader (void);
@@ -39,6 +53,12 @@ void pajeDefineLinkType(const char *alias,
                         const char *sourceContainerType,
                         const char *destContainerType,
                         const char *name);
+
+void pajeDefineEventType(const char *alias,
+                        const char *containerType,
+                        const char *name,
+                        const char *color);
+
 void pajeDefineEntityValue(const char *alias,
                            const char *entityType,
                            const char *name,
@@ -90,5 +110,15 @@ void pajeEndLink(double timestamp,
 /*
  * Functions related to variables, instantaneous events
  */
+void pajeNewEvent(double timestamp,
+                 const char *container,
+                 const char *type,
+                 const char *value );
+
 //Not implemented yet
+
+#if defined(__cplusplus)
+}
+#endif
+
 #endif
