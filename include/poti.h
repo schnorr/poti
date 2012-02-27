@@ -32,7 +32,7 @@ int pajeOpen (const char* filename);
 /*
  * Function to close opened file
  */
-void pajeClose ();
+void pajeClose (void);
 
 /*
  * Function to generate the header 
