@@ -42,5 +42,15 @@ INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/src/)
 INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR}/include/)
 
 ADD_LIBRARY(poti SHARED ${POTI_SRC})
+SET_TARGET_PROPERTIES(
+  poti
+PROPERTIES
+# bump when new function are added in the library
+  VERSION 1.0
+# bump when ABI is broken (symbols removed or parameters changed)
+  SOVERSION 1
+)
+# bump when the API change (new functions in the header file)
+SET(POTI_APIVERSION 1)
 
 ADD_SUBDIRECTORY(examples)
