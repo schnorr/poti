@@ -26,6 +26,7 @@ No secrets here, just do:
     $ cd poti
     $ mkdir build
     $ cd build
+    $ cmake ..
     $ make
 
 Installation
