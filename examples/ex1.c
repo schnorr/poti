@@ -31,11 +31,17 @@ int main (int argc, char **argv)
   pajeDefineEntityValue("r", "STATE", "running", "0.0 1.0 0.0");
   pajeDefineEntityValue("i", "STATE", "idle", "0.3 0.3 0.3");
 
+  //define values and color for the LINK type
+  pajeDefineEntityValue("c", "LINK", "communication", "1 0 0");
+
   //Create my root container and containers for two threads
   pajeCreateContainer (0.01, "root", "ROOT", "0", "root");
   pajeCreateContainer (0.12, "thread-0", "THREAD", "root", "thread-0");
   pajeCreateContainer (0.23, "thread-1", "THREAD", "root", "thread-1");
   
+  //Start a link from thread-0
+  pajeStartLink (0.24, "root", "LINK", "thread-0", "c", "myKey-001");
+
   //Push and Pop two states for each thread
   pajePushState (0.34, "thread-0", "STATE", "r");
   pajePushState (0.45, "thread-1", "STATE", "r");
@@ -45,6 +51,9 @@ int main (int argc, char **argv)
   pajePushState (0.89, "thread-1", "STATE", "i");
   pajePopState  (0.90, "thread-0", "STATE");
   pajePopState  (1.01, "thread-1", "STATE");
+
+  //End the link at thread-1
+  pajeEndLink (1.02, "root", "LINK", "thread-1", "c", "myKey-001");
 
   //Closing containers
   pajeDestroyContainer (1.12, "THREAD", "thread-0");
