@@ -267,7 +267,8 @@ void _poti_header(int basic)
     paje_extended = 0;
     fprintf (paje_file,
              "#\n"
-             "# Trace created without extended events\n");
+             "# Trace created without extended events\n"
+             "#\n");
     return;
   }else{
     paje_extended = 1;
