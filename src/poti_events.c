@@ -44,7 +44,7 @@ void poti_DefineVariableType(const char *alias,
                              const char *name,
                              const char *color)
 {
-  fprintf (paje_file,"%d %s %s %s \"%s\"\n",
+  fprintf (paje_file,"%d %s %s \"%s\" \"%s\"\n",
            PAJE_DefineVariableType,
            alias,
            containerType,
