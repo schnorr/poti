@@ -30,6 +30,11 @@ extern "C" {
 int poti_open (const char* filename);
 
 /*
+ * Function to init poti with an external file descriptor
+ */
+int poti_init (FILE *file);
+
+/*
  * Function to close opened file
  */
 void poti_close (void);

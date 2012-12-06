@@ -27,6 +27,16 @@ int poti_open (const char* filename)
   return 0;
 }
 
+int poti_init (FILE *file)
+{
+  if (file){
+    paje_file = file;
+    return 0;
+  }else{
+    return -1;
+  }
+}
+
 void poti_close ()
 {
   if (paje_file != stdout)
