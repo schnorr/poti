@@ -87,16 +87,16 @@ void poti_DestroyContainer(double timestamp,
  */
 
 void poti_SetVariable (double timestamp,
-                       const char *type,
                        const char *container,
+                       const char *type,
                        double value);
 void poti_AddVariable (double timestamp,
-                       const char *type,
                        const char *container,
+                       const char *type,
                        double value);
 void poti_SubVariable (double timestamp,
-                       const char *type,
                        const char *container,
+                       const char *type,
                        double value);
 
 /*
