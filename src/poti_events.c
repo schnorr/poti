@@ -76,8 +76,8 @@ void poti_DefineEventType(const char *alias,
 
 void poti_DefineLinkType(const char *alias,
                         const char *containerType,
-                        const char *sourceContainerType,
-                        const char *destContainerType,
+                        const char *startContainerType,
+                        const char *endContainerType,
                         const char *name)
 {
   fprintf(paje_file,"%d %s %s %s %s \"%s\"\n",
