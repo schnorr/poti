@@ -58,9 +58,8 @@ void poti_DefineStateType(const char *alias,
                          const char *containerType,
                          const char *name);
 void poti_DefineEventType(const char *alias,
-                         const char *containerType,
-                         const char *name,
-                         const char *color);
+                          const char *containerType,
+                          const char *name);
 void poti_DefineLinkType(const char *alias,
                         const char *containerType,
                         const char *sourceContainerType,
