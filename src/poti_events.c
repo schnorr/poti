@@ -84,8 +84,8 @@ void poti_DefineLinkType(const char *alias,
          PAJE_DefineLinkType,
          alias,
          containerType,
-         sourceContainerType,
-         destContainerType,
+         startContainerType,
+         endContainerType,
          name);
 }
 
