@@ -22,7 +22,7 @@ EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log -n 1 --format=%ai" OU
 SET(CMAKE_C_FLAGS "-Wall -Wunused -Wmissing-prototypes -Wmissing-declarations -Wpointer-arith -Wchar-subscripts -Wcomment -Wformat -Wwrite-strings -Wno-unused-function -Wno-unused-parameter -Wno-strict-aliasing -Wno-format-nonliteral -Werror ")
 
 # poti_config.h.in file
-CONFIGURE_FILE("${poti_SOURCE_DIR}/include/poti_config.h.in" "${CMAKE_BINARY_DIR}/include/poti_config.h" @ONLY IMMEDIATE)
+CONFIGURE_FILE("${poti_SOURCE_DIR}/include/poti_config.h.in" "${CMAKE_BINARY_DIR}/include/poti_config.h" ESCAPE_QUOTES @ONLY IMMEDIATE)
 
 
 SET(POTI_SRC src/poti.c src/poti_header.c src/poti_events.c)
