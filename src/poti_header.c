@@ -23,7 +23,11 @@ static void poti_header_PajeDefineContainerType (int basic)
 {
   fprintf(paje_file, "%%EventDef PajeDefineContainerType %d\n", PAJE_DefineContainerType);
   fprintf(paje_file, "%%       Alias string\n");
-  fprintf(paje_file, "%%       Type string\n");
+  if (basic){
+    fprintf(paje_file, "%%       ContainerType string\n");
+  }else{
+    fprintf(paje_file, "%%       Type string\n");
+  }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 }
@@ -32,7 +36,11 @@ static void poti_header_PajeDefineVariableType (int basic)
 {
   fprintf(paje_file, "%%EventDef PajeDefineVariableType %d\n", PAJE_DefineVariableType);
   fprintf(paje_file, "%%       Alias string\n");
-  fprintf(paje_file, "%%       Type string\n");
+  if (basic){
+    fprintf(paje_file, "%%       ContainerType string\n");
+  }else{
+    fprintf(paje_file, "%%       Type string\n");
+  }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%       Color color\n");
   fprintf(paje_file, "%%EndEventDef\n");
@@ -42,7 +50,11 @@ static void poti_header_PajeDefineStateType (int basic)
 {
   fprintf(paje_file, "%%EventDef PajeDefineStateType %d\n", PAJE_DefineStateType);
   fprintf(paje_file, "%%       Alias string\n");
-  fprintf(paje_file, "%%       Type string\n");
+  if (basic){
+    fprintf(paje_file, "%%       ContainerType string\n");
+  }else{
+    fprintf(paje_file, "%%       Type string\n");
+  }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 }
@@ -51,7 +63,11 @@ static void poti_header_PajeDefineEventType (int basic)
 {
   fprintf(paje_file, "%%EventDef PajeDefineEventType %d\n", PAJE_DefineEventType);
   fprintf(paje_file, "%%       Alias string\n");
-  fprintf(paje_file, "%%       Type string\n");
+  if (basic){
+    fprintf(paje_file, "%%       ContainerType string\n");
+  }else{
+    fprintf(paje_file, "%%       Type string\n");
+  }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 }
@@ -60,9 +76,15 @@ static void poti_header_PajeDefineLinkType (int basic)
 {
   fprintf(paje_file, "%%EventDef PajeDefineLinkType %d\n", PAJE_DefineLinkType);
   fprintf(paje_file, "%%       Alias string\n");
-  fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       StartContainerType string\n");
-  fprintf(paje_file, "%%       EndContainerType string\n");
+  if (basic){
+    fprintf(paje_file, "%%       ContainerType string\n");
+    fprintf(paje_file, "%%       SourceContainerType string\n");
+    fprintf(paje_file, "%%       DestContainerType string\n");
+  }else{
+    fprintf(paje_file, "%%       Type string\n");
+    fprintf(paje_file, "%%       StartContainerType string\n");
+    fprintf(paje_file, "%%       EndContainerType string\n");
+  }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%EndEventDef\n");
 }
@@ -71,7 +93,11 @@ static void poti_header_PajeDefineEntityValue (int basic)
 {
   fprintf(paje_file, "%%EventDef PajeDefineEntityValue %d\n", PAJE_DefineEntityValue);
   fprintf(paje_file, "%%       Alias string\n");
-  fprintf(paje_file, "%%       Type string\n");
+  if (basic){
+    fprintf(paje_file, "%%       EntityType string\n");
+  }else{
+    fprintf(paje_file, "%%       Type string\n");
+  }
   fprintf(paje_file, "%%       Name string\n");
   fprintf(paje_file, "%%       Color color\n");
   fprintf(paje_file, "%%EndEventDef\n");
@@ -185,7 +211,11 @@ static void poti_header_PajeStartLink (int basic)
   fprintf(paje_file, "%%       Time date\n");
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       StartContainer string\n");
+  if (basic){
+    fprintf(paje_file, "%%       SourceContainer string\n");
+  }else{
+    fprintf(paje_file, "%%       StartContainer string\n");
+  }
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%       Key string\n");
   fprintf(paje_file, "%%EndEventDef\n");
@@ -197,7 +227,11 @@ static void poti_header_PajeStartLinkSize (int basic)
   fprintf(paje_file, "%%       Time date\n");
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       StartContainer string\n");
+  if (basic){
+    fprintf(paje_file, "%%       SourceContainer string\n");
+  }else{
+    fprintf(paje_file, "%%       StartContainer string\n");
+  }
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%       Key string\n");
   fprintf(paje_file, "%%       Size double\n");
@@ -211,7 +245,11 @@ static void poti_header_PajeStartLinkSizeMark (int basic)
   fprintf(paje_file, "%%       Time date\n");
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       StartContainer string\n");
+  if (basic){
+    fprintf(paje_file, "%%       SourceContainer string\n");
+  }else{
+    fprintf(paje_file, "%%       StartContainer string\n");
+  }
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%       Key string\n");
   fprintf(paje_file, "%%       Size double\n");
@@ -225,7 +263,11 @@ static void poti_header_PajeEndLink (int basic)
   fprintf(paje_file, "%%       Time date\n");
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       EndContainer string\n");
+  if (basic){
+    fprintf(paje_file, "%%       DestContainer string\n");
+  }else{
+    fprintf(paje_file, "%%       EndContainer string\n");
+  }
   fprintf(paje_file, "%%       Value string\n");
   fprintf(paje_file, "%%       Key string\n");
   fprintf(paje_file, "%%EndEventDef\n");
