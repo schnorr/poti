@@ -39,7 +39,7 @@ PROPERTIES
 # bump when new function are added in the library
   VERSION 1.2
 # bump when ABI is broken (symbols removed or parameters changed)
-  SOVERSION 3
+  SOVERSION 4
 )
 # bump when the API change (new functions in the header file)
 SET(POTI_APIVERSION 2)

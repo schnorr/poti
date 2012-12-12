@@ -46,12 +46,12 @@ void poti_close ()
   paje_file = 0;
 }
 
-void poti_header (int basic)
+void poti_header (int basic, int old_header)
 {
   if (paje_file ==0)
     paje_file = stdout;
 
   fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
   fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
-  _poti_header (basic);
+  _poti_header (basic, old_header);
 }

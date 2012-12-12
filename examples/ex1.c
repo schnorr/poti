@@ -19,7 +19,9 @@
 int main (int argc, char **argv)
 {
   //first, dump the pajeheader
-  poti_header (0);
+  //first parameter indicates a basic header
+  //second parameter indicates a old header
+  poti_header (1, 1);
 
   //Defining my types
   poti_DefineContainerType ("ROOT", "0", "ROOT");

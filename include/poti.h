@@ -42,7 +42,7 @@ void poti_close (void);
 /*
  * Function to generate the header 
  */
-void poti_header (int basic);
+void poti_header (int basic, int old_header);
 
 /*
  * Functions to define the type hierarchy of a Paje trace file 
