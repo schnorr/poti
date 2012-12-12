@@ -14,3 +14,6 @@
 # along with Poti. If not, see <http://www.gnu.org/licenses/>.
 ADD_EXECUTABLE(ex1 ex1.c)
 TARGET_LINK_LIBRARIES(ex1 poti)
+
+ADD_EXECUTABLE(vite_compatible vite_compatible.c)
+TARGET_LINK_LIBRARIES(vite_compatible poti)
