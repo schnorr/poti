@@ -19,8 +19,8 @@
 int main (int argc, char **argv)
 {
   //first, dump the pajeheader
-  //first parameter indicates a basic header
-  //second parameter indicates a old header
+  //first parameter is a boolean indicating a basic header or not
+  //second parameter is a boolean indicating an old header or not
   poti_header (0, 0);
 
   //Defining my types
