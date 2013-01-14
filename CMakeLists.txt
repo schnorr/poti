@@ -44,6 +44,14 @@ PROPERTIES
 # bump when the API change (new functions in the header file)
 SET(POTI_APIVERSION 2)
 
+INSTALL(TARGETS poti
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+INSTALL(FILES include/poti.h
+  DESTINATION include)
+
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(pkgconfig)
 
