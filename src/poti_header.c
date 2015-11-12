@@ -230,6 +230,11 @@ static int poti_h_XXX (int type, bool legacy, bool alias, int num_extras, ...)
   case PAJE_StartLink: poti_h_YYY_link (legacy, POTI_TRUE); break;
   case PAJE_EndLink:   poti_h_YYY_link (legacy, POTI_FALSE); break;
 
+  //events with extra fields, should be removed
+  case PAJE_PushStateMark: poti_h_YYY_set_push_state (); break;
+  case PAJE_StartLinkSize: 
+  case PAJE_StartLinkSizeMark: poti_h_YYY_link (legacy, POTI_TRUE); break;
+    
   default: break;
   }
 
