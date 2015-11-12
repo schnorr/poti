@@ -45,6 +45,11 @@ void poti_close (void);
 void poti_header (int basic, int old_header);
 
 /*
+ * poti_header_event: defines a new event, see examples/eventdef.c for details
+ */
+int poti_header_event (int type, int legacy, int alias, int num_extras, ...);
+
+/*
  * poti_set_alias: control if aliases are used or not in events
  */
 void poti_set_alias (int alias);

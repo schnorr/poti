@@ -57,4 +57,3 @@ This is the current TODO list:
 * Check all function parameters and trace consistency according to the [Paje file format](http://paje.sf.net)
 * Use data structures instead of strings for all parameters
 * Add variable and instantaneous functions currently not implemented
-* Extended events (you'll need one day probably)
