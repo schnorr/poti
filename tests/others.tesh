@@ -1,0 +1,431 @@
+#!./tesh
+
+! setenv POTI_DISABLE_COMMENTS=1
+$ ./examples/vite-svn
+> %EventDef PajeDefineContainerType 0
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineVariableType 1
+> %       Alias string
+> %       Type string
+> %       Name string
+> %       Color color
+> %EndEventDef
+> %EventDef PajeDefineStateType 2
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineEventType 3
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineLinkType 4
+> %       Alias string
+> %       Type string
+> %       StartContainerType string
+> %       EndContainerType string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineEntityValue 5
+> %       Time date
+> %       Alias string
+> %       Container string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeCreateContainer 6
+> %       Time date
+> %       Alias string
+> %       Container string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDestroyContainer 7
+> %       Time date
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeSetVariable 8
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeAddVariable 9
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeSubVariable 10
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeSetState 11
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value string
+> %EndEventDef
+> %EventDef PajePushState 12
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value string
+> %EndEventDef
+> %EventDef PajePopState 13
+> %       Time date
+> %       Container string
+> %       Type string
+> %EndEventDef
+> %EventDef PajeResetState 14
+> %       Time date
+> %       Container string
+> %       Type string
+> %EndEventDef
+> %EventDef PajeStartLink 15
+> %       Time date
+> %       Container string
+> %       Type string
+> %       StartContainer string
+> %       Value string
+> %       Key string
+> %EndEventDef
+> %EventDef PajeEndLink 16
+> %       Time date
+> %       Container string
+> %       Type string
+> %       EndContainer string
+> %       Value string
+> %       Key string
+> %EndEventDef
+> %EventDef PajeNewEvent 17
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> 0 ROOT 0 "ROOT"
+> 0 THREAD ROOT "THREAD"
+> 2 STATE THREAD "STATE"
+> 4 LINK ROOT THREAD THREAD "LINK"
+> 5 r STATE running "0.0 1.0 0.0"
+> 5 i STATE idle "0.3 0.3 0.3"
+> 5 c LINK communication "1 0 0"
+> 6 0.000000000 root 0 ROOT "root"
+> 6 0.110000000 thread-0 root THREAD "thread-0"
+> 6 0.220000000 thread-1 root THREAD "thread-1"
+> 15 0.230000000 root LINK thread-0 c myKey-001
+> 12 0.330000000 thread-0 STATE r
+> 12 0.440000000 thread-1 STATE r
+> 13 0.550000000 thread-0 STATE
+> 12 0.660000000 thread-0 STATE i
+> 13 0.770000000 thread-1 STATE
+> 12 0.880000000 thread-1 STATE i
+> 13 0.890000000 thread-0 STATE
+> 13 1.000000000 thread-1 STATE
+> 16 1.010000000 root LINK thread-1 c myKey-001
+> 7 1.110000000 THREAD thread-0
+> 7 1.220000000 THREAD thread-1
+> 7 1.330000000 ROOT root
+
+$ ./examples/vite-1.2
+> %EventDef PajeDefineContainerType 0
+> %       Alias string
+> %       ContainerType string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineVariableType 1
+> %       Alias string
+> %       ContainerType string
+> %       Name string
+> %       Color color
+> %EndEventDef
+> %EventDef PajeDefineStateType 2
+> %       Alias string
+> %       ContainerType string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineEventType 3
+> %       Alias string
+> %       ContainerType string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineLinkType 4
+> %       Alias string
+> %       ContainerType string
+> %       SourceContainerType string
+> %       DestContainerType string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineEntityValue 5
+> %       Time date
+> %       Alias string
+> %       Container string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeCreateContainer 6
+> %       Time date
+> %       Alias string
+> %       Container string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDestroyContainer 7
+> %       Time date
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeSetVariable 8
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeAddVariable 9
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeSubVariable 10
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeSetState 11
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value string
+> %EndEventDef
+> %EventDef PajePushState 12
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value string
+> %EndEventDef
+> %EventDef PajePopState 13
+> %       Time date
+> %       Container string
+> %       Type string
+> %EndEventDef
+> %EventDef PajeResetState 14
+> %       Time date
+> %       Container string
+> %       Type string
+> %EndEventDef
+> %EventDef PajeStartLink 15
+> %       Time date
+> %       Container string
+> %       Type string
+> %       SourceContainer string
+> %       Value string
+> %       Key string
+> %EndEventDef
+> %EventDef PajeEndLink 16
+> %       Time date
+> %       Container string
+> %       Type string
+> %       DestContainer string
+> %       Value string
+> %       Key string
+> %EndEventDef
+> %EventDef PajeNewEvent 17
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> 0 ROOT 0 "ROOT"
+> 0 THREAD ROOT "THREAD"
+> 2 STATE THREAD "STATE"
+> 4 LINK ROOT THREAD THREAD "LINK"
+> 5 r STATE running "0.0 1.0 0.0"
+> 5 i STATE idle "0.3 0.3 0.3"
+> 5 c LINK communication "1 0 0"
+> 6 0.000000000 root 0 ROOT "root"
+> 6 0.110000000 thread-0 root THREAD "thread-0"
+> 6 0.220000000 thread-1 root THREAD "thread-1"
+> 15 0.230000000 root LINK thread-0 c myKey-001
+> 12 0.330000000 thread-0 STATE r
+> 12 0.440000000 thread-1 STATE r
+> 13 0.550000000 thread-0 STATE
+> 12 0.660000000 thread-0 STATE i
+> 13 0.770000000 thread-1 STATE
+> 12 0.880000000 thread-1 STATE i
+> 13 0.890000000 thread-0 STATE
+> 13 1.000000000 thread-1 STATE
+> 16 1.010000000 root LINK thread-1 c myKey-001
+> 7 1.110000000 THREAD thread-0
+> 7 1.220000000 THREAD thread-1
+> 7 1.330000000 ROOT root
+
+$ ./examples/main_example
+> %EventDef PajeDefineContainerType 0
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineVariableType 1
+> %       Alias string
+> %       Type string
+> %       Name string
+> %       Color color
+> %EndEventDef
+> %EventDef PajeDefineStateType 2
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineEventType 3
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineLinkType 4
+> %       Alias string
+> %       Type string
+> %       StartContainerType string
+> %       EndContainerType string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineEntityValue 5
+> %       Time date
+> %       Alias string
+> %       Container string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeCreateContainer 6
+> %       Time date
+> %       Alias string
+> %       Container string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDestroyContainer 7
+> %       Time date
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeSetVariable 8
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeAddVariable 9
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeSubVariable 10
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeSetState 11
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value string
+> %EndEventDef
+> %EventDef PajePushState 12
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value string
+> %EndEventDef
+> %EventDef PajePopState 13
+> %       Time date
+> %       Container string
+> %       Type string
+> %EndEventDef
+> %EventDef PajeResetState 14
+> %       Time date
+> %       Container string
+> %       Type string
+> %EndEventDef
+> %EventDef PajeStartLink 15
+> %       Time date
+> %       Container string
+> %       Type string
+> %       StartContainer string
+> %       Value string
+> %       Key string
+> %EndEventDef
+> %EventDef PajeEndLink 16
+> %       Time date
+> %       Container string
+> %       Type string
+> %       EndContainer string
+> %       Value string
+> %       Key string
+> %EndEventDef
+> %EventDef PajeNewEvent 17
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajePushState 18
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value string
+> %       Mark string
+> %EndEventDef
+> %EventDef PajeStartLink 19
+> %       Time date
+> %       Container string
+> %       Type string
+> %       StartContainer string
+> %       Value string
+> %       Key string
+> %       Size double
+> %EndEventDef
+> %EventDef PajeStartLink 20
+> %       Time date
+> %       Container string
+> %       Type string
+> %       StartContainer string
+> %       Value string
+> %       Key string
+> %       Size double
+> %       Mark string
+> %EndEventDef
+> 0 ROOT 0 "ROOT"
+> 0 THREAD ROOT "THREAD"
+> 2 STATE THREAD "STATE"
+> 4 LINK ROOT THREAD THREAD "LINK"
+> 5 r STATE running "0.0 1.0 0.0"
+> 5 i STATE idle "0.3 0.3 0.3"
+> 5 c LINK communication "1 0 0"
+> 6 0.000000000 root 0 ROOT "root"
+> 6 0.110000000 thread-0 root THREAD "thread-0"
+> 6 0.220000000 thread-1 root THREAD "thread-1"
+> 15 0.230000000 root LINK thread-0 c myKey-001
+> 12 0.330000000 thread-0 STATE r
+> 12 0.440000000 thread-1 STATE r
+> 13 0.550000000 thread-0 STATE
+> 12 0.660000000 thread-0 STATE i
+> 13 0.770000000 thread-1 STATE
+> 12 0.880000000 thread-1 STATE i
+> 13 0.890000000 thread-0 STATE
+> 13 1.000000000 thread-1 STATE
+> 16 1.010000000 root LINK thread-1 c myKey-001
+> 7 1.110000000 THREAD thread-0
+> 7 1.220000000 THREAD thread-1
+> 7 1.330000000 ROOT root
+
