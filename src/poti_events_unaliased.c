@@ -41,7 +41,7 @@ void poti_DLinkType      (const char *containerType, const char *startContainerT
   poti_DefineLinkType (NULL, containerType, startContainerType, endContainerType, name);
 }
 
-void poti_DEntityValue   (const char *entityType, const char *name, const char *color);
+void poti_DEntityValue   (const char *entityType, const char *name, const char *color)
 {
   poti_DefineEntityValue (NULL, entityType, name, color);
 }
