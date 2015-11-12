@@ -25,31 +25,6 @@
 typedef int bool;
 #define POTI_TRUE 1
 #define POTI_FALSE 0
-typedef enum {
-  PAJE_DefineContainerType,
-  PAJE_DefineVariableType,
-  PAJE_DefineStateType,
-  PAJE_DefineEventType,
-  PAJE_DefineLinkType,
-  PAJE_DefineEntityValue,
-  PAJE_CreateContainer,
-  PAJE_DestroyContainer,
-  PAJE_SetVariable,
-  PAJE_AddVariable,
-  PAJE_SubVariable,
-  PAJE_SetState,
-  PAJE_PushState,
-  PAJE_PushStateMark,
-  PAJE_PopState,
-  PAJE_ResetState,
-  PAJE_StartLink,
-  PAJE_StartLinkSize,
-  PAJE_StartLinkSizeMark,
-  PAJE_EndLink,
-  PAJE_NewEvent,
-  PAJE_FinalMarker //add new events above if necessary
-} e_event_type;
-
 extern int *identifiers;
 extern int poti_alias;
 extern int disable_comments;

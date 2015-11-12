@@ -24,6 +24,31 @@
 extern "C" {
 #endif
 
+typedef enum {
+  PAJE_DefineContainerType,
+  PAJE_DefineVariableType,
+  PAJE_DefineStateType,
+  PAJE_DefineEventType,
+  PAJE_DefineLinkType,
+  PAJE_DefineEntityValue,
+  PAJE_CreateContainer,
+  PAJE_DestroyContainer,
+  PAJE_SetVariable,
+  PAJE_AddVariable,
+  PAJE_SubVariable,
+  PAJE_SetState,
+  PAJE_PushState,
+  PAJE_PushStateMark,
+  PAJE_PopState,
+  PAJE_ResetState,
+  PAJE_StartLink,
+  PAJE_StartLinkSize,
+  PAJE_StartLinkSizeMark,
+  PAJE_EndLink,
+  PAJE_NewEvent,
+  PAJE_FinalMarker //add new events above if necessary
+} e_event_type;
+  
 /*
  * Function to open output into a file, else output to stdout
  */
@@ -82,7 +107,25 @@ void poti_NewEvent (double timestamp, const char *container, const char *type, c
 /*
  * Main API with unique identifiers exposed and optional extra fields: functions to define the type hierarchy and raise events
  */
-
+void poti_UDefineContainerType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...);
+void poti_UDefineVariableType (const int unique, const char *alias, const char *containerType, const char *name, const char *color, int extra, ...);
+void poti_UDefineStateType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...);
+void poti_UDefineEventType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...);
+void poti_UDefineLinkType (const int unique, const char *alias, const char *containerType, const char *startContainerType, const char *endContainerType, const char *name, int extra, ...);
+void poti_UDefineEntityValue (const int unique, const char *alias, const char *entityType, const char *name, const char *color, int extra, ...);
+void poti_UCreateContainer (const int unique, double timestamp, const char *alias, const char *type, const char *container, const char *name, int extra, ...);
+void poti_UDestroyContainer (const int unique, double timestamp, const char *type, const char *container, int extra, ...);
+void poti_USetVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...);
+void poti_UAddVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...);
+void poti_USubVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...);
+void poti_USetState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...);
+void poti_UPushState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...);
+void poti_UPopState (const int unique, double timestamp, const char *container, const char *type, int extra, ...);
+void poti_UResetState (const int unique, double timestamp, const char *container, const char *type, int extra, ...);
+void poti_UStartLink (const int unique, double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, int extra, ...);
+void poti_UEndLink (const int unique, double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key, int extra, ...);
+void poti_UNewEvent (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...);
+  
 /*
  * Unalised API: without alias parameters
  */
