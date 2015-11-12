@@ -26,9 +26,10 @@ static inline void print_event_type (int unique)
   if(extra == 0){ \
     fprintf(paje_file, "\n"); \
   }else{ \
+    int i; \
     va_list arguments; \
     va_start (arguments, extra); \
-    for (int i = 0; i < extra; i++){ \
+    for (i = 0; i < extra; i++){ \
       fprintf(paje_file, " %s", va_arg (arguments, char*)); \
     } \
     va_end (arguments); \

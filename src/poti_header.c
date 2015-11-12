@@ -240,9 +240,10 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
   }
 
   /* Extra args (user responsibility) */
+  int i;
   va_list arguments;
   va_start (arguments, num_extras);
-  for (int i = 0; i < num_extras; i++){
+  for (i = 0; i < num_extras; i++){
     fprintf(paje_file, "%%       %s\n", va_arg (arguments, char*));
   }
   va_end (arguments);
