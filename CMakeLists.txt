@@ -38,12 +38,12 @@ SET_TARGET_PROPERTIES(
   poti
 PROPERTIES
 # bump when new function are added in the library
-  VERSION 4.3
+  VERSION 4.4
 # bump when ABI is broken (symbols removed or parameters changed)
-  SOVERSION 5
+  SOVERSION 6
 )
 # bump when the API change (new functions in the header file)
-SET(POTI_APIVERSION 3)
+SET(POTI_APIVERSION 4)
 
 INSTALL(TARGETS poti
   RUNTIME DESTINATION bin
