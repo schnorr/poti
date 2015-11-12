@@ -112,8 +112,8 @@ void poti_CreateContainer(double timestamp,
           identifiers[PAJE_CreateContainer],
          paje_event_timestamp(timestamp),
          alias,
-         type,
          container,
+         type,
          name);
 }
 
