@@ -17,6 +17,8 @@
 #include <stdarg.h>
 #include "poti_private.h"
 
+int *identifiers = NULL;
+
 static char const *X[] = {
   "PajeDefineContainerType",
   "PajeDefineVariableType",
@@ -200,6 +202,7 @@ static int poti_h_XXX (int type, bool legacy, bool alias, int num_extras, ...)
 {
   /* Start of event definition */
   int identifier = poti_event_def_start (type);
+  identifiers[type] = identifier;
   
   /* Required args */
   switch (type){

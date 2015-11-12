@@ -47,7 +47,10 @@ typedef enum {
   PAJE_StartLinkSizeMark,
   PAJE_EndLink,
   PAJE_NewEvent,
+  PAJE_FinalMarker //add new events above if necessary
 } e_event_type;
+
+extern int *identifiers;
 
 void _poti_header (int basic, int old_header);
 

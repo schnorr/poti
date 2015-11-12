@@ -39,6 +39,9 @@ int poti_init (FILE *file)
 
 void poti_close ()
 {
+  /* deallocate identifiers list */
+  free(identifiers);
+  
   if (paje_file != stdout)
   {
     fclose( paje_file );
@@ -50,6 +53,9 @@ void poti_header (int basic, int old_header)
 {
   if (paje_file ==0)
     paje_file = stdout;
+
+  /* allocate identifiers list */
+  identifiers = (int*) malloc (PAJE_FinalMarker * sizeof(int));
 
   fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
   fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
