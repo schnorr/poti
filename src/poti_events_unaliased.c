@@ -83,12 +83,12 @@ void poti_EPushState     (double timestamp, const char *container, const char *t
 
 void poti_EPopState      (double timestamp, const char *container, const char *type)
 {
-  poti_PopState (timestamp, container, type, value);
+  poti_PopState (timestamp, container, type);
 }
 
 void poti_EResetState    (double timestamp, const char *container, const char *type)
 {
-  poti_ResetState (timestamp, container, type, value);
+  poti_ResetState (timestamp, container, type);
 }
 
 void poti_EStartLink     (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key)
