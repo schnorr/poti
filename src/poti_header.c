@@ -287,7 +287,7 @@ void _poti_header(int basic, int old_header)
           "#\n");
 
   
-  poti_h_XXX (PAJE_PushState, old_header, POTI_TRUE, 1, "Mark string");
-  poti_h_XXX (PAJE_StartLink, old_header, POTI_TRUE, 1, "Size double");
-  poti_h_XXX (PAJE_StartLink, old_header, POTI_TRUE, 2, "Size double", "Mark string");
+  poti_h_XXX (PAJE_PushStateMark, old_header, POTI_TRUE, 1, "Mark string");
+  poti_h_XXX (PAJE_StartLinkSize, old_header, POTI_TRUE, 1, "Size double");
+  poti_h_XXX (PAJE_StartLinkSizeMark, old_header, POTI_TRUE, 2, "Size double", "Mark string");
 }
