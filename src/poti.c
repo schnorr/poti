@@ -53,14 +53,20 @@ void poti_close ()
 
 void poti_header (int basic, int old_header)
 {
+  if (getenv("POTI_DISABLE_COMMENTS")){
+    disable_comments = 1;
+  }
+  
   if (paje_file ==0)
     paje_file = stdout;
 
   /* allocate identifiers list */
   identifiers = (int*) malloc (PAJE_FinalMarker * sizeof(int));
 
-  fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
-  fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
+  if (!disable_comments){
+    fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
+    fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
+  }
   _poti_header (basic, old_header);
   poti_alias_initialized = 1;
 }

@@ -18,6 +18,7 @@
 #include "poti_private.h"
 
 int *identifiers = NULL;
+int disable_comments = 0;
 
 static char const *X[] = {
   "PajeDefineContainerType",
@@ -275,21 +276,25 @@ void _poti_header(int basic, int old_header)
 
   if (basic){
     paje_extended = 0;
-    fprintf (paje_file,
-             "#\n"
-             "# Trace created without extended events\n"
-             "#\n");
+    if (!disable_comments){
+      fprintf (paje_file,
+               "#\n"
+               "# Trace created without extended events\n"
+               "#\n");
+    }
     return;
   }else{
     paje_extended = 1;
   }
 
-  fprintf(paje_file,
-          "#\n"
-          "# Extended events with additional information\n"
-          "# Note that not all paje file format parsers support this\n"
-          "# If you have problems parsing this file with your visualization tool\n"
-          "#\n");
+  if (!disable_comments){
+    fprintf(paje_file,
+            "#\n"
+            "# Extended events with additional information\n"
+            "# Note that not all paje file format parsers support this\n"
+            "# If you have problems parsing this file with your visualization tool\n"
+            "#\n");
+  }
 
   
   poti_h_XXX (PAJE_PushStateMark, old_header, poti_alias, 1, "Mark string");

@@ -52,6 +52,7 @@ typedef enum {
 
 extern int *identifiers;
 extern int poti_alias;
+extern int disable_comments;
 
 void _poti_header (int basic, int old_header);
 
