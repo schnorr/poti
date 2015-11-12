@@ -33,6 +33,9 @@ TARGET_LINK_LIBRARIES(links poti)
 ADD_EXECUTABLE(states states.c)
 TARGET_LINK_LIBRARIES(states poti)
 
+ADD_EXECUTABLE(states_unaliased states_unaliased.c)
+TARGET_LINK_LIBRARIES(states_unaliased poti)
+
 ADD_EXECUTABLE(variables variables.c)
 TARGET_LINK_LIBRARIES(variables poti)
 
