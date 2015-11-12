@@ -26,7 +26,7 @@ SET(CMAKE_C_FLAGS "-Wall -Wunused -Wmissing-prototypes -Wmissing-declarations -W
 CONFIGURE_FILE("${poti_SOURCE_DIR}/include/poti_config.h.in" "${CMAKE_BINARY_DIR}/include/poti_config.h" ESCAPE_QUOTES @ONLY IMMEDIATE)
 
 
-SET(POTI_SRC src/poti.c src/poti_header.c src/poti_events.c)
+SET(POTI_SRC src/poti.c src/poti_header.c src/poti_events.c src/poti_events_unique.c src/poti_events_unaliased.c)
 SET(POTI_HEADERS include/poti.h ${CMAKE_BINARY_DIR}/include/poti_config.h)
 
 INCLUDE_DIRECTORIES(${poti_SOURCE_DIR}/include/)
