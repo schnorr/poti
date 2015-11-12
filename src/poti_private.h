@@ -22,6 +22,9 @@
 #include <poti.h>
 #include <poti_config.h>
 
+typedef int bool;
+#define POTI_TRUE 1
+#define POTI_FALSE 0
 typedef enum {
   PAJE_DefineContainerType,
   PAJE_DefineVariableType,
