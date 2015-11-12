@@ -39,3 +39,6 @@ TARGET_LINK_LIBRARIES(variables poti)
 ADD_EXECUTABLE(header header.c)
 TARGET_LINK_LIBRARIES(header poti)
 
+ADD_EXECUTABLE(eventdef eventdef.c)
+TARGET_LINK_LIBRARIES(eventdef poti)
+
