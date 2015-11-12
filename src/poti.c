@@ -31,6 +31,11 @@ int poti_open (const char* filename)
 
 int poti_init (FILE *file)
 {
+  /* allocate identifiers list */
+  if (!identifiers){
+    identifiers = (int*) malloc (PAJE_FinalMarker * sizeof(int));
+  }
+  
   if (file){
     paje_file = file;
     return 0;
@@ -56,12 +61,8 @@ void poti_header (int basic, int old_header)
   if (getenv("POTI_DISABLE_COMMENTS")){
     disable_comments = 1;
   }
-  
-  if (paje_file ==0)
-    paje_file = stdout;
 
-  /* allocate identifiers list */
-  identifiers = (int*) malloc (PAJE_FinalMarker * sizeof(int));
+  poti_init (stdout);
 
   if (!disable_comments){
     fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
