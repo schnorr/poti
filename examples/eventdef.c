@@ -67,4 +67,5 @@ int main (int argc, char **argv)
   //manage these unique identifiers yourself and raise events with
   //these function calls:
   poti_UPushState (pushStateMark, 0.32, "p1", "STATE", "Start", 1, "MyMark");
+  return 0;
 }
