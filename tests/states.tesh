@@ -3,23 +3,28 @@
 ! setenv POTI_DISABLE_COMMENTS=1
 $ ./examples/states
 > %EventDef PajeDefineContainerType 0
+> %       Alias string
 > %       Type string
 > %       Name string
 > %EndEventDef
 > %EventDef PajeDefineVariableType 1
+> %       Alias string
 > %       Type string
 > %       Name string
 > %       Color color
 > %EndEventDef
 > %EventDef PajeDefineStateType 2
+> %       Alias string
 > %       Type string
 > %       Name string
 > %EndEventDef
 > %EventDef PajeDefineEventType 3
+> %       Alias string
 > %       Type string
 > %       Name string
 > %EndEventDef
 > %EventDef PajeDefineLinkType 4
+> %       Alias string
 > %       Type string
 > %       StartContainerType string
 > %       EndContainerType string
@@ -27,12 +32,14 @@ $ ./examples/states
 > %EndEventDef
 > %EventDef PajeDefineEntityValue 5
 > %       Time date
+> %       Alias string
 > %       Container string
 > %       Type string
 > %       Name string
 > %EndEventDef
 > %EventDef PajeCreateContainer 6
 > %       Time date
+> %       Alias string
 > %       Container string
 > %       Type string
 > %       Name string
@@ -130,9 +137,9 @@ $ ./examples/states
 > %       Size double
 > %       Mark string
 > %EndEventDef
-> 0 0 "PROCESS"
-> 2 PROCESS "VAR"
-> 6 0.000000000 0 PROCESS "p1"
+> 0 PROCESS 0 "PROCESS"
+> 2 VAR PROCESS "VAR"
+> 6 0.000000000 p1 0 PROCESS "p1"
 > 11 0.000000000 p1 VAR Inicio
 > 12 0.320000000 p1 VAR Meio
 > 13 0.530000000 p1 VAR
