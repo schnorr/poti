@@ -18,6 +18,7 @@
 
 FILE* paje_file = 0;
 int paje_extended = 0;
+bool poti_alias = 1; //default is with alias
 
 int poti_open (const char* filename)
 {
@@ -60,4 +61,9 @@ void poti_header (int basic, int old_header)
   fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
   fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
   _poti_header (basic, old_header);
+}
+
+void poti_set_alias (bool alias)
+{
+  poti_alias = alias;
 }

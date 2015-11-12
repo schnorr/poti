@@ -254,24 +254,24 @@ static int poti_h_XXX (int type, bool legacy, bool alias, int num_extras, ...)
 /* entry point */
 void _poti_header(int basic, int old_header)
 {
-  poti_h_XXX (PAJE_DefineContainerType, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_DefineVariableType, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_DefineStateType, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_DefineEventType, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_DefineLinkType, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_DefineEntityValue, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_CreateContainer, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_DestroyContainer, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_SetVariable, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_AddVariable, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_SubVariable, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_SetState, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_PushState, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_PopState, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_ResetState, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_StartLink, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_EndLink, old_header, POTI_TRUE, 0);
-  poti_h_XXX (PAJE_NewEvent, old_header, POTI_TRUE, 0);
+  poti_h_XXX (PAJE_DefineContainerType, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_DefineVariableType, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_DefineStateType, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_DefineEventType, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_DefineLinkType, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_DefineEntityValue, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_CreateContainer, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_DestroyContainer, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_SetVariable, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_AddVariable, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_SubVariable, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_SetState, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_PushState, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_PopState, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_ResetState, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_StartLink, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_EndLink, old_header, poti_alias, 0);
+  poti_h_XXX (PAJE_NewEvent, old_header, poti_alias, 0);
 
   if (basic){
     paje_extended = 0;
@@ -292,7 +292,7 @@ void _poti_header(int basic, int old_header)
           "#\n");
 
   
-  poti_h_XXX (PAJE_PushStateMark, old_header, POTI_TRUE, 1, "Mark string");
-  poti_h_XXX (PAJE_StartLinkSize, old_header, POTI_TRUE, 1, "Size double");
-  poti_h_XXX (PAJE_StartLinkSizeMark, old_header, POTI_TRUE, 2, "Size double", "Mark string");
+  poti_h_XXX (PAJE_PushStateMark, old_header, poti_alias, 1, "Mark string");
+  poti_h_XXX (PAJE_StartLinkSize, old_header, poti_alias, 1, "Size double");
+  poti_h_XXX (PAJE_StartLinkSizeMark, old_header, poti_alias, 2, "Size double", "Mark string");
 }

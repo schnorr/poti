@@ -45,6 +45,11 @@ void poti_close (void);
 void poti_header (int basic, int old_header);
 
 /*
+ * poti_set_alias: control if aliases are used or not in events
+ */
+void poti_set_alias (int alias);
+  
+/*
  * Functions to define the type hierarchy of a Paje trace file 
  */
 void poti_DefineContainerType(const char *alias,

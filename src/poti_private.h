@@ -51,6 +51,7 @@ typedef enum {
 } e_event_type;
 
 extern int *identifiers;
+extern int poti_alias;
 
 void _poti_header (int basic, int old_header);
 
