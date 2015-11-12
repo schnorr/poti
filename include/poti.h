@@ -38,12 +38,9 @@ typedef enum {
   PAJE_SubVariable,
   PAJE_SetState,
   PAJE_PushState,
-  PAJE_PushStateMark,
   PAJE_PopState,
   PAJE_ResetState,
   PAJE_StartLink,
-  PAJE_StartLinkSize,
-  PAJE_StartLinkSizeMark,
   PAJE_EndLink,
   PAJE_NewEvent,
   PAJE_FinalMarker //add new events above if necessary

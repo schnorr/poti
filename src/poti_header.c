@@ -231,11 +231,6 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
   case PAJE_StartLink: poti_h_YYY_link (legacy, POTI_TRUE); break;
   case PAJE_EndLink:   poti_h_YYY_link (legacy, POTI_FALSE); break;
 
-  //events with extra fields, should be removed
-  case PAJE_PushStateMark: poti_h_YYY_set_push_state (); break;
-  case PAJE_StartLinkSize: 
-  case PAJE_StartLinkSizeMark: poti_h_YYY_link (legacy, POTI_TRUE); break;
-    
   default: break;
   }
 
@@ -287,17 +282,4 @@ void _poti_header(int basic, int old_header)
   }else{
     paje_extended = 1;
   }
-
-  if (!disable_comments){
-    fprintf(paje_file,
-            "#\n"
-            "# Extended events with additional information\n"
-            "# Note that not all paje file format parsers support this\n"
-            "# If you have problems parsing this file with your visualization tool\n"
-            "#\n");
-  }
-  
-  poti_header_event (PAJE_PushStateMark, old_header, poti_alias, 1, "Mark string");
-  poti_header_event (PAJE_StartLinkSize, old_header, poti_alias, 1, "Size double");
-  poti_header_event (PAJE_StartLinkSizeMark, old_header, poti_alias, 2, "Size double", "Mark string");
 }
