@@ -33,7 +33,7 @@ void poti_DefineContainerType(const char *alias,
                              const char *name)
 {
   fprintf(paje_file,"%d %s %s \"%s\"\n",
-         PAJE_DefineContainerType,
+          identifiers[PAJE_DefineContainerType],
          alias,
          containerType,
          name);
@@ -45,7 +45,7 @@ void poti_DefineVariableType(const char *alias,
                              const char *color)
 {
   fprintf (paje_file,"%d %s %s \"%s\" \"%s\"\n",
-           PAJE_DefineVariableType,
+           identifiers[PAJE_DefineVariableType],
            alias,
            containerType,
            name,
@@ -57,7 +57,7 @@ void poti_DefineStateType(const char *alias,
                          const char *name)
 {
   fprintf(paje_file,"%d %s %s \"%s\"\n",
-         PAJE_DefineStateType,
+          identifiers[PAJE_DefineStateType],
          alias,
          containerType,
          name);
@@ -68,7 +68,7 @@ void poti_DefineEventType(const char *alias,
                           const char *name)
 {
   fprintf(paje_file,"%d %s %s \"%s\"\n",
-          PAJE_DefineEventType,
+          identifiers[PAJE_DefineEventType],
           alias,
           containerType,
           name);
@@ -81,7 +81,7 @@ void poti_DefineLinkType(const char *alias,
                         const char *name)
 {
   fprintf(paje_file,"%d %s %s %s %s \"%s\"\n",
-         PAJE_DefineLinkType,
+          identifiers[PAJE_DefineLinkType],
          alias,
          containerType,
          startContainerType,
@@ -95,7 +95,7 @@ void poti_DefineEntityValue(const char *alias,
                            const char *color)
 {
   fprintf(paje_file,"%d %s %s \"%s\" \"%s\"\n",
-          PAJE_DefineEntityValue,
+          identifiers[PAJE_DefineEntityValue],
           alias,
           entityType,
           name,
@@ -109,7 +109,7 @@ void poti_CreateContainer(double timestamp,
                          const char *name)
 {
   fprintf(paje_file,"%d %.9f %s %s %s \"%s\"\n",
-         PAJE_CreateContainer,
+          identifiers[PAJE_CreateContainer],
          paje_event_timestamp(timestamp),
          alias,
          type,
@@ -122,7 +122,7 @@ void poti_DestroyContainer(double timestamp,
                           const char *container)
 {
   fprintf(paje_file,"%d %.9f %s %s\n",
-         PAJE_DestroyContainer,
+          identifiers[PAJE_DestroyContainer],
          paje_event_timestamp(timestamp),
          type,
          container);
@@ -134,7 +134,7 @@ void poti_SetVariable (double timestamp,
                        double value)
 {
   fprintf(paje_file,"%d %.9f %s %s %f\n",
-          PAJE_SetVariable,
+          identifiers[PAJE_SetVariable],
           paje_event_timestamp(timestamp),
           container,
           type,
@@ -147,7 +147,7 @@ void poti_AddVariable (double timestamp,
                        double value)
 {
   fprintf(paje_file,"%d %.9f %s %s %f\n",
-          PAJE_AddVariable,
+          identifiers[PAJE_AddVariable],
           paje_event_timestamp(timestamp),
           container,
           type,
@@ -160,7 +160,7 @@ void poti_SubVariable (double timestamp,
                        double value)
 {
   fprintf(paje_file,"%d %.9f %s %s %f\n",
-          PAJE_SubVariable,
+          identifiers[PAJE_SubVariable],
           paje_event_timestamp(timestamp),
           container,
           type,
@@ -173,7 +173,7 @@ void poti_SetState(double timestamp,
                   const char *value)
 {
   fprintf(paje_file,"%d %.9f %s %s %s\n",
-         PAJE_SetState,
+          identifiers[PAJE_SetState],
          paje_event_timestamp(timestamp),
          container,
          type,
@@ -187,7 +187,7 @@ void poti_PushState(double timestamp,
                    const char *value)
 {
   fprintf(paje_file,"%d %.9f %s %s %s\n",
-         PAJE_PushState,
+          identifiers[PAJE_PushState],
          paje_event_timestamp(timestamp),
          container,
          type,
@@ -202,7 +202,7 @@ void poti_PushStateMark(double timestamp,
 {
   if (paje_extended){
     fprintf(paje_file,"%d %.9f %s %s %s %d\n",
-            PAJE_PushStateMark,
+            identifiers[PAJE_PushStateMark],
             paje_event_timestamp(timestamp),
             container,
             type,
@@ -218,7 +218,7 @@ void poti_PopState(double timestamp,
                   const char *type)
 {
   fprintf(paje_file,"%d %.9f %s %s\n",
-         PAJE_PopState,
+          identifiers[PAJE_PopState],
          paje_event_timestamp(timestamp),
          container,
          type);
@@ -229,7 +229,7 @@ void poti_ResetState(double timestamp,
                    const char *type)
 {
   fprintf(paje_file,"%d %.9f %s %s\n",
-         PAJE_ResetState,
+          identifiers[PAJE_ResetState],
          paje_event_timestamp(timestamp),
          container,
          type);
@@ -243,7 +243,7 @@ void poti_StartLink(double timestamp,
                    const char *key)
 {
   fprintf(paje_file,"%d %.9f %s %s %s %s %s\n",
-         PAJE_StartLink,
+          identifiers[PAJE_StartLink],
          paje_event_timestamp(timestamp),
          container,
          type,
@@ -262,7 +262,7 @@ void poti_StartLinkSize(double timestamp,
 {
   if (paje_extended){
     fprintf(paje_file,"%d %.9f %s %s %s %s %s %d\n",
-            PAJE_StartLinkSize,
+            identifiers[PAJE_StartLinkSize],
             paje_event_timestamp(timestamp),
             container,
             type,
@@ -286,7 +286,7 @@ void poti_StartLinkSizeMark(double timestamp,
 {
   if (paje_extended){
     fprintf(paje_file,"%d %.9f %s %s %s %s %s %d %d\n",
-            PAJE_StartLinkSizeMark,
+            identifiers[PAJE_StartLinkSizeMark],
             paje_event_timestamp(timestamp),
             container,
             type,
@@ -308,7 +308,7 @@ void poti_EndLink(double timestamp,
                  const char *key)
 {
   fprintf(paje_file,"%d %.9f %s %s %s %s %s\n",
-         PAJE_EndLink,
+          identifiers[PAJE_EndLink],
          paje_event_timestamp(timestamp),
          container,
          type,
@@ -323,7 +323,7 @@ void poti_NewEvent(double timestamp,
                  const char *value )
 {
   fprintf(paje_file,"%d %.9f %s %s %s\n",
-         PAJE_NewEvent,
+          identifiers[PAJE_NewEvent],
          paje_event_timestamp(timestamp),
          container,
          type,
