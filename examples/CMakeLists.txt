@@ -20,3 +20,18 @@ TARGET_LINK_LIBRARIES(vite-1.2 poti)
 
 ADD_EXECUTABLE(vite-svn vite-svn.c)
 TARGET_LINK_LIBRARIES(vite-svn poti)
+
+ADD_EXECUTABLE(containers containers.c)
+TARGET_LINK_LIBRARIES(containers poti)
+
+ADD_EXECUTABLE(events events.c)
+TARGET_LINK_LIBRARIES(events poti)
+
+ADD_EXECUTABLE(links links.c)
+TARGET_LINK_LIBRARIES(links poti)
+
+ADD_EXECUTABLE(states states.c)
+TARGET_LINK_LIBRARIES(states poti)
+
+ADD_EXECUTABLE(variables variables.c)
+TARGET_LINK_LIBRARIES(variables poti)
