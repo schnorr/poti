@@ -3,7 +3,7 @@
 ! output ignore
 $ ./examples/header 8
 
-! setenv POTI_DISABLE_COMMENTS="teste"
+! setenv POTI_DISABLE_COMMENTS=1
 ! expect return 1
 $ ./examples/header
 
