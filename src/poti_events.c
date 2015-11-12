@@ -28,9 +28,7 @@ static double paje_event_timestamp(double timestamp)
 extern FILE *paje_file;
 extern int paje_extended;
 
-void poti_DefineContainerType(const char *alias,
-                             const char *containerType,
-                             const char *name)
+void poti_DefineContainerType (const char *alias, const char *containerType, const char *name)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_DefineContainerType]);
   if (poti_alias){
@@ -40,10 +38,7 @@ void poti_DefineContainerType(const char *alias,
   fprintf(paje_file, " \"%s\"\n", name);
 }
 
-void poti_DefineVariableType(const char *alias,
-                             const char *containerType,
-                             const char *name,
-                             const char *color)
+void poti_DefineVariableType (const char *alias, const char *containerType, const char *name, const char *color)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_DefineVariableType]);
   if (poti_alias){
@@ -54,9 +49,7 @@ void poti_DefineVariableType(const char *alias,
   fprintf(paje_file, " \"%s\"\n", color);
 }
 
-void poti_DefineStateType(const char *alias,
-                         const char *containerType,
-                         const char *name)
+void poti_DefineStateType (const char *alias, const char *containerType, const char *name)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_DefineStateType]);
   if (poti_alias){
@@ -66,9 +59,7 @@ void poti_DefineStateType(const char *alias,
   fprintf(paje_file, " \"%s\"\n", name);
 }
 
-void poti_DefineEventType(const char *alias,
-                          const char *containerType,
-                          const char *name)
+void poti_DefineEventType (const char *alias, const char *containerType, const char *name)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_DefineEventType]);
   if (poti_alias){
@@ -78,11 +69,7 @@ void poti_DefineEventType(const char *alias,
   fprintf(paje_file, " \"%s\"\n", name);
 }
 
-void poti_DefineLinkType(const char *alias,
-                        const char *containerType,
-                        const char *startContainerType,
-                        const char *endContainerType,
-                        const char *name)
+void poti_DefineLinkType (const char *alias, const char *containerType, const char *startContainerType, const char *endContainerType, const char *name)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_DefineLinkType]);
   if (poti_alias){
@@ -94,10 +81,7 @@ void poti_DefineLinkType(const char *alias,
   fprintf(paje_file, " \"%s\"\n", name);
 }
 
-void poti_DefineEntityValue(const char *alias,
-                           const char *entityType,
-                           const char *name,
-                           const char *color)
+void poti_DefineEntityValue (const char *alias, const char *entityType, const char *name, const char *color)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_DefineEntityValue]);
   if (poti_alias){
@@ -108,11 +92,7 @@ void poti_DefineEntityValue(const char *alias,
   fprintf(paje_file, " \"%s\"\n", color);
 }
 
-void poti_CreateContainer(double timestamp,
-                         const char *alias,
-                         const char *type,
-                         const char *container,
-                         const char *name)
+void poti_CreateContainer (double timestamp, const char *alias, const char *type, const char *container, const char *name)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_CreateContainer]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -124,9 +104,7 @@ void poti_CreateContainer(double timestamp,
   fprintf(paje_file, " \"%s\"\n", name);
 }
 
-void poti_DestroyContainer(double timestamp,
-                          const char *type,
-                          const char *container)
+void poti_DestroyContainer (double timestamp, const char *type, const char *container)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_DestroyContainer]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -134,10 +112,7 @@ void poti_DestroyContainer(double timestamp,
   fprintf(paje_file, " %s\n", container);
 }
 
-void poti_SetVariable (double timestamp,
-                       const char *container,
-                       const char *type,
-                       double value)
+void poti_SetVariable (double timestamp, const char *container, const char *type, double value)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_SetVariable]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -146,10 +121,7 @@ void poti_SetVariable (double timestamp,
   fprintf(paje_file, " %f\n", value);
 }
 
-void poti_AddVariable (double timestamp,
-                       const char *container,
-                       const char *type,
-                       double value)
+void poti_AddVariable (double timestamp, const char *container, const char *type, double value)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_AddVariable]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -158,10 +130,7 @@ void poti_AddVariable (double timestamp,
   fprintf(paje_file, " %f\n", value);
 }
 
-void poti_SubVariable (double timestamp,
-                       const char *container,
-                       const char *type,
-                       double value)
+void poti_SubVariable (double timestamp, const char *container, const char *type, double value)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_SubVariable]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -170,10 +139,7 @@ void poti_SubVariable (double timestamp,
   fprintf(paje_file, " %f\n", value);
 }
 
-void poti_SetState(double timestamp,
-                  const char *container,
-                  const char *type,
-                  const char *value)
+void poti_SetState (double timestamp, const char *container, const char *type, const char *value)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_SetState]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -182,11 +148,7 @@ void poti_SetState(double timestamp,
   fprintf(paje_file, " %s\n", value);
 }
 
-
-void poti_PushState(double timestamp,
-                   const char *container,
-                   const char *type,
-                   const char *value)
+void poti_PushState (double timestamp, const char *container, const char *type, const char *value)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_PushState]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -195,11 +157,7 @@ void poti_PushState(double timestamp,
   fprintf(paje_file, " %s\n", value);
 }
 
-void poti_PushStateMark(double timestamp,
-                        const char *container,
-                        const char *type,
-                        const char *value,
-                        const int mark)
+void poti_PushStateMark (double timestamp, const char *container, const char *type, const char *value, const int mark)
 {
   if (paje_extended){
     fprintf(paje_file, "%d", identifiers[PAJE_PushStateMark]);
@@ -213,9 +171,7 @@ void poti_PushStateMark(double timestamp,
   }
 }
 
-void poti_PopState(double timestamp,
-                  const char *container,
-                  const char *type)
+void poti_PopState (double timestamp, const char *container, const char *type)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_PopState]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -223,9 +179,7 @@ void poti_PopState(double timestamp,
   fprintf(paje_file, " %s\n", type);
 }
 
-void poti_ResetState(double timestamp,
-                   const char *container,
-                   const char *type)
+void poti_ResetState (double timestamp, const char *container, const char *type)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_ResetState]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -233,12 +187,7 @@ void poti_ResetState(double timestamp,
   fprintf(paje_file, " %s\n", type);
 }
 
-void poti_StartLink(double timestamp,
-                   const char *container,
-                   const char *type,
-                   const char *sourceContainer,
-                   const char *value,
-                   const char *key)
+void poti_StartLink (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_StartLink]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -249,13 +198,7 @@ void poti_StartLink(double timestamp,
   fprintf(paje_file, " %s\n", key);
 }
 
-void poti_StartLinkSize(double timestamp,
-                        const char *container,
-                        const char *type,
-                        const char *sourceContainer,
-                        const char *value,
-                        const char *key,
-                        const int size)
+void poti_StartLinkSize (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const int size)
 {
   if (paje_extended){
     fprintf(paje_file, "%d", identifiers[PAJE_StartLinkSize]);
@@ -271,14 +214,7 @@ void poti_StartLinkSize(double timestamp,
   }
 }
 
-void poti_StartLinkSizeMark(double timestamp,
-                            const char *container,
-                            const char *type,
-                            const char *sourceContainer,
-                            const char *value,
-                            const char *key,
-                            const int size,
-                            const int mark)
+void poti_StartLinkSizeMark (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const int size, const int mark)
 {
   if (paje_extended){
     fprintf(paje_file, "%d", identifiers[PAJE_StartLinkSizeMark]);
@@ -295,12 +231,7 @@ void poti_StartLinkSizeMark(double timestamp,
   }
 }
 
-void poti_EndLink(double timestamp,
-                 const char *container,
-                 const char *type,
-                 const char *endContainer,
-                 const char *value,
-                 const char *key)
+void poti_EndLink (double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_EndLink]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -311,10 +242,7 @@ void poti_EndLink(double timestamp,
   fprintf(paje_file, " %s\n", key);
 }
 
-void poti_NewEvent(double timestamp,
-                 const char *container,
-                 const char *type,
-                 const char *value )
+void poti_NewEvent (double timestamp, const char *container, const char *type, const char *value)
 {
   fprintf(paje_file, "%d", identifiers[PAJE_NewEvent]);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -322,3 +250,4 @@ void poti_NewEvent(double timestamp,
   fprintf(paje_file, " %s", type);
   fprintf(paje_file, " %s\n", value);
 }
+
