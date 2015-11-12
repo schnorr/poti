@@ -35,3 +35,7 @@ TARGET_LINK_LIBRARIES(states poti)
 
 ADD_EXECUTABLE(variables variables.c)
 TARGET_LINK_LIBRARIES(variables poti)
+
+ADD_EXECUTABLE(header header.c)
+TARGET_LINK_LIBRARIES(header poti)
+
