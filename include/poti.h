@@ -55,7 +55,7 @@ int poti_header_event (int type, int legacy, int alias, int num_extras, ...);
 void poti_set_alias (int alias);
   
 /*
- * Functions to define the type hierarchy of a Paje trace file 
+ * Main API: functions to define the type hierarchy and raise events
  */
 void poti_DefineContainerType (const char *alias, const char *containerType, const char *name);
 void poti_DefineVariableType (const char *alias, const char *containerType, const char *name, const char *color);
@@ -63,56 +63,36 @@ void poti_DefineStateType (const char *alias, const char *containerType, const c
 void poti_DefineEventType (const char *alias, const char *containerType, const char *name);
 void poti_DefineLinkType (const char *alias, const char *containerType, const char *startContainerType, const char *endContainerType, const char *name);
 void poti_DefineEntityValue (const char *alias, const char *entityType, const char *name, const char *color);
-
-/*
- * Functions related to containers 
- */
 void poti_CreateContainer (double timestamp, const char *alias, const char *type, const char *container, const char *name);
 void poti_DestroyContainer (double timestamp, const char *type, const char *container);
-
-/*
- * Functions related to variables
- */
-
 void poti_SetVariable (double timestamp, const char *container, const char *type, double value);
 void poti_AddVariable (double timestamp, const char *container, const char *type, double value);
 void poti_SubVariable (double timestamp, const char *container, const char *type, double value);
-
-/*
- * Functions related to states
- */
 void poti_SetState (double timestamp, const char *container, const char *type, const char *value);
 void poti_PushState (double timestamp, const char *container, const char *type, const char *value);
 void poti_PushStateMark (double timestamp, const char *container, const char *type, const char *value, const int mark);
 void poti_PopState (double timestamp, const char *container, const char *type);
 void poti_ResetState (double timestamp, const char *container, const char *type);
-
-
-/* 
- * Functions related to links
- */
 void poti_StartLink (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key);
 void poti_StartLinkSize (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const int size);
 void poti_StartLinkSizeMark (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const int size, const int mark);
 void poti_EndLink (double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key);
-
-/*
- * Functions related to variables, instantaneous events
- */
 void poti_NewEvent (double timestamp, const char *container, const char *type, const char *value);
 
 /*
- * New API without Aliases
+ * Main API with unique identifiers exposed and optional extra fields: functions to define the type hierarchy and raise events
  */
 
-//without alias
+/*
+ * Unalised API: without alias parameters
+ */
 void poti_DContainerType (const char *containerType, const char *name);
 void poti_DVariableType  (const char *containerType, const char *name, const char *color);
 void poti_DStateType     (const char *containerType, const char *name);
 void poti_DEventType     (const char *containerType, const char *name);
 void poti_DLinkType      (const char *containerType, const char *startContainerType, const char *endContainerType, const char *name);
 void poti_DEntityValue   (const char *entityType, const char *name, const char *color);
-void poti_ECreateContainer    (double timestamp, const char *type, const char *container, const char *name);
+void poti_ECreateContainer   (double timestamp, const char *type, const char *container, const char *name);
 void poti_EDestroyContainer  (double timestamp, const char *type, const char *container);
 void poti_ESetVariable   (double timestamp, const char *container, const char *type, double value);
 void poti_EAddVariable   (double timestamp, const char *container, const char *type, double value);
@@ -123,6 +103,7 @@ void poti_EPopState      (double timestamp, const char *container, const char *t
 void poti_EResetState    (double timestamp, const char *container, const char *type);
 void poti_EStartLink     (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key);
 void poti_EEndLink       (double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key);
+
   
 #if defined(__cplusplus)
 }
