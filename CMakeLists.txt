@@ -15,6 +15,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 PROJECT(poti)
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+enable_testing()
 
 EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log --oneline -1" OUTPUT_VARIABLE "POTI_GITVERSION")
 EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log -n 1 --format=%ai" OUTPUT_VARIABLE "POTI_GITDATE")
@@ -58,3 +59,26 @@ ADD_SUBDIRECTORY(pkgconfig)
 INSTALL(TARGETS poti DESTINATION lib)
 INSTALL(FILES ${POTI_HEADERS} DESTINATION include)
 
+
+#
+# test with tesh (thanks SimGrid team)
+#
+#testing the pajeng suite (with pj_dump and pj_validate) through tesh
+FILE(COPY ${CMAKE_HOME_DIRECTORY}/tests/scripts/ DESTINATION ${CMAKE_BINARY_DIR}/bin)
+
+# the macro to add tesh'es
+SET(TESH_COMMAND perl -I${CMAKE_BINARY_DIR}/bin/ ${CMAKE_BINARY_DIR}/bin/tesh)
+MACRO(ADD_TESH NAME)
+  SET(ARGT ${ARGV})
+  LIST(REMOVE_AT ARGT 0)
+  ADD_TEST(${NAME} ${TESH_COMMAND} ${TESH_OPTION} ${ARGT})
+ENDMACRO()
+
+# include all tesh scripts in the tests directory
+FILE(GLOB tests "${CMAKE_HOME_DIRECTORY}/tests/*.tesh")
+LIST(SORT tests)
+FOREACH(file ${tests})
+  STRING(REGEX REPLACE "^.*/tests/" "" name ${file})
+  STRING(REGEX REPLACE ".tesh$" "" testname ${name})
+  ADD_TESH(${testname}  --cd "${CMAKE_BINARY_DIR}" ${file})
+ENDFOREACH()
