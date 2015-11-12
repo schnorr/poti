@@ -95,12 +95,9 @@ void poti_AddVariable (double timestamp, const char *container, const char *type
 void poti_SubVariable (double timestamp, const char *container, const char *type, double value);
 void poti_SetState (double timestamp, const char *container, const char *type, const char *value);
 void poti_PushState (double timestamp, const char *container, const char *type, const char *value);
-void poti_PushStateMark (double timestamp, const char *container, const char *type, const char *value, const int mark);
 void poti_PopState (double timestamp, const char *container, const char *type);
 void poti_ResetState (double timestamp, const char *container, const char *type);
 void poti_StartLink (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key);
-void poti_StartLinkSize (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const int size);
-void poti_StartLinkSizeMark (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const int size, const int mark);
 void poti_EndLink (double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key);
 void poti_NewEvent (double timestamp, const char *container, const char *type, const char *value);
 

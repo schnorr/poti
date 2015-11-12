@@ -90,17 +90,6 @@ void poti_PushState (double timestamp, const char *container, const char *type, 
   poti_UPushState (identifiers[PAJE_PushState], timestamp, container, type, value, 0);
 }
 
-void poti_PushStateMark (double timestamp, const char *container, const char *type, const char *value, const int mark)
-{
-  if (paje_extended){
-    char markstr[100];
-    snprintf (markstr, 100, "%d", mark);
-    poti_UPushState (identifiers[PAJE_PushState], timestamp, container, type, value, 1, markstr);
-  }else{
-    poti_UPushState (identifiers[PAJE_PushState], timestamp, container, type, value, 0);
-  }
-}
-
 void poti_PopState (double timestamp, const char *container, const char *type)
 {
   poti_UPopState (identifiers[PAJE_PopState], timestamp, container, type, 0);
@@ -114,29 +103,6 @@ void poti_ResetState (double timestamp, const char *container, const char *type)
 void poti_StartLink (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key)
 {
   poti_UStartLink (identifiers[PAJE_StartLink], timestamp, container, type, sourceContainer, value, key, 0);
-}
-
-void poti_StartLinkSize (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const int size)
-{
-  if (paje_extended){
-    char sizestr[100];
-    snprintf (sizestr, 100, "%d", size);
-    poti_UStartLink (identifiers[PAJE_StartLinkSize], timestamp, container, type, sourceContainer, value, key, 1, sizestr);
-  }else{
-    poti_UStartLink (identifiers[PAJE_StartLink], timestamp, container, type, sourceContainer, value, key, 0);
-  }
-}
-
-void poti_StartLinkSizeMark (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const int size, const int mark)
-{
-  if (paje_extended){
-    char sizestr[100], markstr[100];
-    snprintf (sizestr, 100, "%d", size);
-    snprintf (markstr, 100, "%d", mark);
-    poti_UStartLink (identifiers[PAJE_StartLinkSizeMark], timestamp, container, type, sourceContainer, value, key, 2, sizestr, markstr);
-  }else{
-    poti_UStartLink (identifiers[PAJE_StartLink], timestamp, container, type, sourceContainer, value, key, 0);
-  }
 }
 
 void poti_EndLink (double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key)
