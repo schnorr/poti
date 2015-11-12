@@ -53,7 +53,10 @@ typedef enum {
 extern int *identifiers;
 extern int poti_alias;
 extern int disable_comments;
+extern FILE *paje_file;
+extern int paje_extended;
 
+double paje_event_timestamp(double timestamp);
 void _poti_header (int basic, int old_header);
 
 #endif

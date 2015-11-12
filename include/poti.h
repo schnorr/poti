@@ -96,6 +96,29 @@ void poti_EndLink (double timestamp, const char *container, const char *type, co
  */
 void poti_NewEvent (double timestamp, const char *container, const char *type, const char *value);
 
+/*
+ * New API without Aliases
+ */
+
+//without alias
+void poti_DContainerType (const char *containerType, const char *name);
+void poti_DVariableType  (const char *containerType, const char *name, const char *color);
+void poti_DStateType     (const char *containerType, const char *name);
+void poti_DEventType     (const char *containerType, const char *name);
+void poti_DLinkType      (const char *containerType, const char *startContainerType, const char *endContainerType, const char *name);
+void poti_DEntityValue   (const char *entityType, const char *name, const char *color);
+void poti_ECreateContainer    (double timestamp, const char *type, const char *container, const char *name);
+void poti_EDestroyContainer  (double timestamp, const char *type, const char *container);
+void poti_ESetVariable   (double timestamp, const char *container, const char *type, double value);
+void poti_EAddVariable   (double timestamp, const char *container, const char *type, double value);
+void poti_ESubVariable   (double timestamp, const char *container, const char *type, double value);
+void poti_ESetState      (double timestamp, const char *container, const char *type, const char *value);
+void poti_EPushState     (double timestamp, const char *container, const char *type, const char *value);
+void poti_EPopState      (double timestamp, const char *container, const char *type);
+void poti_EResetState    (double timestamp, const char *container, const char *type);
+void poti_EStartLink     (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key);
+void poti_EEndLink       (double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key);
+  
 #if defined(__cplusplus)
 }
 #endif

@@ -16,7 +16,7 @@
 */
 #include "poti_private.h"
 
-static double paje_event_timestamp(double timestamp)
+double paje_event_timestamp(double timestamp)
 {
   static double first_timestamp = -1;
   if (first_timestamp == -1) {
@@ -24,9 +24,6 @@ static double paje_event_timestamp(double timestamp)
   }
   return timestamp - first_timestamp;
 }
-
-extern FILE *paje_file;
-extern int paje_extended;
 
 void poti_DefineContainerType (const char *alias, const char *containerType, const char *name)
 {
