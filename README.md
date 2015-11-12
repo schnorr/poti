@@ -47,7 +47,7 @@ compiled by default when you compile Poti. Try it with (I'm supposing
 you are inside the `build` directory in the cloned directory, after
 the `cmake` and `make` command):
 
-    $ ./examples/ex1 
+    $ ./examples/states
 
 Roadmap
 -------
