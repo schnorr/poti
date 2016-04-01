@@ -18,12 +18,12 @@
 #include <stdlib.h>
 #include <argp.h>
 
-static char doc[] = "Generates Paje Trace FILE, with a limite size of SIZE";
-static char args_doc[] = "FILE [SIZE]";
+static char doc[] = "Generates Paje Trace FILENAME, with a limite size of SIZE";
+static char args_doc[] = "FILENAME [SIZE]";
 
 static struct argp_option options[] = {
-  {"size", 's', "SIZE", 0, "The target size of the file."},
-  {"filename", 'f', "END", 0, "The filename of the output."},
+  {"size", 's', "SIZE", 0, "The target size of the file in bytes."},
+  {"filename", 'f', "FILENAME", 0, "The filename of the output."},
   { 0 }
 };
 
