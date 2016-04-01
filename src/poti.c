@@ -68,8 +68,13 @@ void poti_header (int basic, int old_header)
     fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
     fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
   }
-  _poti_header (basic, old_header);
+  poti_header_only (basic, old_header);
   poti_alias_initialized = 1;
+}
+
+void poti_header_only (int basic, int old_header)
+{
+  _poti_header (basic, old_header);
 }
 
 void poti_set_alias (bool alias)
