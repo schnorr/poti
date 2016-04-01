@@ -45,3 +45,5 @@ TARGET_LINK_LIBRARIES(header poti)
 ADD_EXECUTABLE(eventdef eventdef.c)
 TARGET_LINK_LIBRARIES(eventdef poti)
 
+ADD_EXECUTABLE(tracegen tracegen.c)
+TARGET_LINK_LIBRARIES(tracegen poti)
