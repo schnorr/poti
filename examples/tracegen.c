@@ -82,15 +82,15 @@ int main (int argc, char **argv)
   poti_DefineStateType ("S", "P", "S");
 
   poti_CreateContainer (0, "p1", "P", "0", "p1");
-  poti_SetState (0, "p1", "V", "I");
+  poti_SetState (0, "p1", "S", "I");
 
   double timestamp = INCREASE;
   
   while (ftell(file) < arguments.targetSize){
     //The size in bytes of these two events is 
-    poti_PushState (timestamp, "p1", "VAR", "M");
+    poti_PushState (timestamp, "p1", "S", "M");
     timestamp += INCREASE;
-    poti_PopState (timestamp, "p1", "VAR");
+    poti_PopState (timestamp, "p1", "S");
     timestamp += INCREASE;
   }
   poti_DestroyContainer (timestamp, "P", "p1");
