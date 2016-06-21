@@ -209,7 +209,7 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
   case PAJE_DefineStateType:  
   case PAJE_DefineEventType:     poti_h_YYY_def_state_event_type (legacy, alias); break;
   case PAJE_DefineLinkType:      poti_h_YYY_def_link_type (legacy, alias); break;
-  case PAJE_DefineEntityValue:
+  case PAJE_DefineEntityValue:   poti_h_YYY_def_entity_value (legacy, alias);break;
   
   case PAJE_CreateContainer: poti_h_YYY_create_container (alias); break;
   case PAJE_DestroyContainer: poti_h_YYY_destroy_container (); break;
