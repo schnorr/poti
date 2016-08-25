@@ -5,6 +5,6 @@ includedir=${prefix}/include
 
 Name: poti
 Description: A library to generate paje traces
-Version: @POTI_APIVERSI@
+Version: @POTI_APIVERSION@
 Libs: -L${libdir} -lpoti
 Cflags: -I${includedir}

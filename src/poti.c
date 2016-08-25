@@ -62,7 +62,12 @@ void poti_header (int basic, int old_header)
     disable_comments = 1;
   }
 
-  poti_init (stdout);
+  if (paje_file == 0)
+  {
+    paje_file=stdout;
+  }
+
+  poti_init (paje_file);
 
   if (!disable_comments){
     fprintf(paje_file,"#POTI_GIT_VERSION %s\n", POTI_GITVERSION);
