@@ -20,6 +20,7 @@ FILE* paje_file = 0;
 int paje_extended = 0;
 bool poti_alias = 1; //default is with alias
 static int poti_alias_initialized = 0;
+bool relative_timestamps = false;
 
 int poti_open (const char* filename)
 {
