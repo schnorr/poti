@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #if defined(__cplusplus)
 extern "C" {
@@ -74,12 +75,12 @@ void poti_header_only (int basic, int old_header);
 /*
  * poti_header_event: defines a new event, see examples/eventdef.c for details
  */
-int poti_header_event (int type, int legacy, int alias, int num_extras, ...);
+int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...);
 
 /*
  * poti_set_alias: control if aliases are used or not in events
  */
-void poti_set_alias (int alias);
+void poti_set_alias (bool alias);
   
 /*
  * Main API: functions to define the type hierarchy and raise events

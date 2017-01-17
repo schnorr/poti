@@ -18,7 +18,6 @@
 #include "poti_private.h"
 
 int *identifiers = NULL;
-int disable_comments = 0;
 
 static char const *X[] = {
   "PajeDefineContainerType",
@@ -40,9 +39,6 @@ static char const *X[] = {
   "PajeEndLink",
   "PajeNewEvent",
 };
-
-extern FILE *paje_file;
-extern int paje_extended;
 
 static int poti_event_def_start (int type)
 {
@@ -225,8 +221,8 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
   case PAJE_PopState:   
   case PAJE_ResetState: poti_h_YYY_pop_reset_state (); break;
   
-  case PAJE_StartLink: poti_h_YYY_link (legacy, POTI_TRUE); break;
-  case PAJE_EndLink:   poti_h_YYY_link (legacy, POTI_FALSE); break;
+  case PAJE_StartLink: poti_h_YYY_link (legacy, true); break;
+  case PAJE_EndLink:   poti_h_YYY_link (legacy, false); break;
 
   default: break;
   }
@@ -268,7 +264,7 @@ void _poti_header(int basic, int old_header)
   poti_header_event (PAJE_NewEvent, old_header, poti_alias, 0);
 
   if (basic){
-    paje_extended = 0;
+    paje_extended = false;
     if (!disable_comments){
       fprintf (paje_file,
                "#\n"
@@ -277,6 +273,6 @@ void _poti_header(int basic, int old_header)
     }
     return;
   }else{
-    paje_extended = 1;
+    paje_extended = true;
   }
 }

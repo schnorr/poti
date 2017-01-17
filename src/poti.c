@@ -16,11 +16,12 @@
 */
 #include "poti_private.h"
 
+bool poti_alias = false;
+bool disable_comments = false;
 FILE* paje_file = 0;
-int paje_extended = 0;
-bool poti_alias = 1; //default is with alias
-static int poti_alias_initialized = 0;
+bool paje_extended = false;
 bool relative_timestamps = false;
+static bool poti_alias_initialized = false;
 
 int poti_open (const char* filename)
 {
@@ -60,7 +61,7 @@ void poti_close ()
 void poti_header (int basic, int old_header)
 {
   if (getenv("POTI_DISABLE_COMMENTS")){
-    disable_comments = 1;
+    disable_comments = true;
   }
 
   if (paje_file == 0)
@@ -75,7 +76,7 @@ void poti_header (int basic, int old_header)
     fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
   }
   poti_header_only (basic, old_header);
-  poti_alias_initialized = 1;
+  poti_alias_initialized = true;
 }
 
 void poti_header_only (int basic, int old_header)
@@ -87,7 +88,7 @@ void poti_set_alias (bool alias)
 {
   if (!poti_alias_initialized){
     poti_alias = alias;
-    poti_alias_initialized = 1;
+    poti_alias_initialized = true;
   }else{
     fprintf (stderr, "#Poti Warning Message: %s should be called once and before header.\n", __FUNCTION__);
   }
