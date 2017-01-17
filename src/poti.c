@@ -37,7 +37,7 @@ int poti_init (FILE *file)
   if (!identifiers){
     identifiers = (int*) malloc (PAJE_FinalMarker * sizeof(int));
   }
-  
+
   if (file){
     paje_file = file;
     return 0;
@@ -50,7 +50,7 @@ void poti_close ()
 {
   /* deallocate identifiers list */
   free(identifiers);
-  
+
   if (paje_file != stdout)
   {
     fclose( paje_file );
