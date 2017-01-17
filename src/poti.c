@@ -20,7 +20,7 @@ bool poti_alias = false;
 bool disable_comments = false;
 FILE* paje_file = 0;
 bool paje_extended = false;
-bool relative_timestamps = false;
+bool relative_timestamps = true;
 static bool poti_alias_initialized = false;
 
 int poti_open (const char* filename)
