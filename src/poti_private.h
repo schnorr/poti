@@ -24,13 +24,14 @@
 #include <poti_config.h>
 
 extern int *identifiers;
-extern bool poti_alias;
-extern bool disable_comments;
 extern FILE *paje_file;
-extern bool paje_extended;
-extern bool relative_timestamps;
+extern bool poti_basic_events;
+extern bool poti_legacy_header;
+extern bool poti_with_comments;
+extern bool poti_with_alias;
+extern bool poti_relative_timestamps;
 
 double paje_event_timestamp(double timestamp);
-void _poti_header (bool basic, bool old_header);
+void _poti_header (void);
 
 #endif

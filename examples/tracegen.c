@@ -75,9 +75,9 @@ int main (int argc, char **argv)
     return 1;
   }
   
-  poti_init (file);
-  poti_set_alias (1);
-  poti_header_only (0, 0);
+  poti_init_filename (arguments.filename);
+
+  poti_header ();
   poti_DefineContainerType ("P", "0", "P");
   poti_DefineStateType ("S", "P", "S");
 

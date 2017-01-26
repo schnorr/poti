@@ -76,10 +76,10 @@ static void poti_h_YYY_variable (void)
   fprintf(paje_file, "%%       Value double\n");
 }
 
-static void poti_h_YYY_create_container (bool alias)
+static void poti_h_YYY_create_container (void)
 {
   fprintf(paje_file, "%%       Time date\n");
-  if(alias){
+  if(poti_with_alias){
     fprintf(paje_file, "%%       Alias string\n");
   }
   fprintf(paje_file, "%%       Container string\n");
@@ -94,17 +94,17 @@ static void poti_h_YYY_destroy_container (void)
   fprintf(paje_file, "%%       Name string\n");
 }
 
-static void poti_h_YYY_link (bool legacy, bool start)
+static void poti_h_YYY_link (bool start)
 {
   const char *kind_str;
   if (start){
-    if (legacy){
+    if (poti_legacy_header){
       kind_str = "SourceContainer";
     }else{
       kind_str = "StartContainer";
     }
   }else{
-    if (legacy){
+    if (poti_legacy_header){
       kind_str = "DestContainer";
     }else{
       kind_str = "EndContainer";
@@ -121,12 +121,12 @@ static void poti_h_YYY_link (bool legacy, bool start)
 
 
 
-static void poti_h_YYY_def_container_type (bool legacy, bool alias)
+static void poti_h_YYY_def_container_type (void)
 {
-  if (alias){
+  if (poti_with_alias){
     fprintf(paje_file, "%%       Alias string\n");
   }
-  if (legacy){
+  if (poti_legacy_header){
     fprintf(paje_file, "%%       ContainerType string\n");
   }else{
     fprintf(paje_file, "%%       Type string\n");
@@ -134,12 +134,12 @@ static void poti_h_YYY_def_container_type (bool legacy, bool alias)
   fprintf(paje_file, "%%       Name string\n");
 }
 
-static void poti_h_YYY_def_variable_type (bool legacy, bool alias)
+static void poti_h_YYY_def_variable_type (void)
 {
-  if (alias){
+  if (poti_with_alias){
     fprintf(paje_file, "%%       Alias string\n");
   }
-  if (legacy){
+  if (poti_legacy_header){
     fprintf(paje_file, "%%       ContainerType string\n");
   }else{
     fprintf(paje_file, "%%       Type string\n");
@@ -148,12 +148,12 @@ static void poti_h_YYY_def_variable_type (bool legacy, bool alias)
   fprintf(paje_file, "%%       Color color\n");
 }
 
-static void poti_h_YYY_def_state_event_type (bool legacy, bool alias)
+static void poti_h_YYY_def_state_event_type (void)
 {
-  if (alias){
+  if (poti_with_alias){
     fprintf(paje_file, "%%       Alias string\n");
   }
-  if (legacy){
+  if (poti_legacy_header){
     fprintf(paje_file, "%%       ContainerType string\n");
   }else{
     fprintf(paje_file, "%%       Type string\n");
@@ -161,12 +161,12 @@ static void poti_h_YYY_def_state_event_type (bool legacy, bool alias)
   fprintf(paje_file, "%%       Name string\n");
 }
 
-static void poti_h_YYY_def_link_type (bool legacy, bool alias)
+static void poti_h_YYY_def_link_type (void)
 {
-  if (alias){
+  if (poti_with_alias){
     fprintf(paje_file, "%%       Alias string\n");
   }
-  if (legacy){
+  if (poti_legacy_header){
     fprintf(paje_file, "%%       ContainerType string\n");
     fprintf(paje_file, "%%       SourceContainerType string\n");
     fprintf(paje_file, "%%       DestContainerType string\n");
@@ -178,12 +178,12 @@ static void poti_h_YYY_def_link_type (bool legacy, bool alias)
   fprintf(paje_file, "%%       Name string\n");
 }
 
-static void poti_h_YYY_def_entity_value (bool legacy, bool alias)
+static void poti_h_YYY_def_entity_value (void)
 {
-  if (alias){
+  if (poti_with_alias){
     fprintf(paje_file, "%%       Alias string\n");
   }
-  if (legacy){
+  if (poti_legacy_header){
     fprintf(paje_file, "%%       EntityType string\n");
   }else{
     fprintf(paje_file, "%%       Type string\n");
@@ -192,7 +192,7 @@ static void poti_h_YYY_def_entity_value (bool legacy, bool alias)
   fprintf(paje_file, "%%       Color color\n");
 }
 
-int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
+int poti_header_event (int type, int num_extras, ...)
 {
   /* Start of event definition */
   int identifier = poti_event_def_start (type);
@@ -200,14 +200,14 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
 
   /* Required args */
   switch (type){
-  case PAJE_DefineContainerType: poti_h_YYY_def_container_type (legacy, alias); break;
-  case PAJE_DefineVariableType:  poti_h_YYY_def_variable_type (legacy, alias); break;
+  case PAJE_DefineContainerType: poti_h_YYY_def_container_type (); break;
+  case PAJE_DefineVariableType:  poti_h_YYY_def_variable_type (); break;
   case PAJE_DefineStateType:
-  case PAJE_DefineEventType:     poti_h_YYY_def_state_event_type (legacy, alias); break;
-  case PAJE_DefineLinkType:      poti_h_YYY_def_link_type (legacy, alias); break;
-  case PAJE_DefineEntityValue:   poti_h_YYY_def_entity_value (legacy, alias); break;
+  case PAJE_DefineEventType:     poti_h_YYY_def_state_event_type (); break;
+  case PAJE_DefineLinkType:      poti_h_YYY_def_link_type (); break;
+  case PAJE_DefineEntityValue:   poti_h_YYY_def_entity_value (); break;
 
-  case PAJE_CreateContainer: poti_h_YYY_create_container (alias); break;
+  case PAJE_CreateContainer: poti_h_YYY_create_container (); break;
   case PAJE_DestroyContainer: poti_h_YYY_destroy_container (); break;
 
   case PAJE_NewEvent: //event fields are the same as variable
@@ -221,8 +221,8 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
   case PAJE_PopState:
   case PAJE_ResetState: poti_h_YYY_pop_reset_state (); break;
 
-  case PAJE_StartLink: poti_h_YYY_link (legacy, true); break;
-  case PAJE_EndLink:   poti_h_YYY_link (legacy, false); break;
+  case PAJE_StartLink: poti_h_YYY_link (true); break;
+  case PAJE_EndLink:   poti_h_YYY_link (false); break;
 
   default: break;
   }
@@ -242,37 +242,34 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
 }
 
 /* entry point */
-void _poti_header(bool basic, bool old_header)
+void _poti_header()
 {
-  poti_header_event (PAJE_DefineContainerType, old_header, poti_alias, 0);
-  poti_header_event (PAJE_DefineVariableType, old_header, poti_alias, 0);
-  poti_header_event (PAJE_DefineStateType, old_header, poti_alias, 0);
-  poti_header_event (PAJE_DefineEventType, old_header, poti_alias, 0);
-  poti_header_event (PAJE_DefineLinkType, old_header, poti_alias, 0);
-  poti_header_event (PAJE_DefineEntityValue, old_header, poti_alias, 0);
-  poti_header_event (PAJE_CreateContainer, old_header, poti_alias, 0);
-  poti_header_event (PAJE_DestroyContainer, old_header, poti_alias, 0);
-  poti_header_event (PAJE_SetVariable, old_header, poti_alias, 0);
-  poti_header_event (PAJE_AddVariable, old_header, poti_alias, 0);
-  poti_header_event (PAJE_SubVariable, old_header, poti_alias, 0);
-  poti_header_event (PAJE_SetState, old_header, poti_alias, 0);
-  poti_header_event (PAJE_PushState, old_header, poti_alias, 0);
-  poti_header_event (PAJE_PopState, old_header, poti_alias, 0);
-  poti_header_event (PAJE_ResetState, old_header, poti_alias, 0);
-  poti_header_event (PAJE_StartLink, old_header, poti_alias, 0);
-  poti_header_event (PAJE_EndLink, old_header, poti_alias, 0);
-  poti_header_event (PAJE_NewEvent, old_header, poti_alias, 0);
+  poti_header_event (PAJE_DefineContainerType, 0);
+  poti_header_event (PAJE_DefineVariableType, 0);
+  poti_header_event (PAJE_DefineStateType, 0);
+  poti_header_event (PAJE_DefineEventType, 0);
+  poti_header_event (PAJE_DefineLinkType, 0);
+  poti_header_event (PAJE_DefineEntityValue, 0);
+  poti_header_event (PAJE_CreateContainer, 0);
+  poti_header_event (PAJE_DestroyContainer, 0);
+  poti_header_event (PAJE_SetVariable, 0);
+  poti_header_event (PAJE_AddVariable, 0);
+  poti_header_event (PAJE_SubVariable, 0);
+  poti_header_event (PAJE_SetState, 0);
+  poti_header_event (PAJE_PushState, 0);
+  poti_header_event (PAJE_PopState, 0);
+  poti_header_event (PAJE_ResetState, 0);
+  poti_header_event (PAJE_StartLink, 0);
+  poti_header_event (PAJE_EndLink, 0);
+  poti_header_event (PAJE_NewEvent, 0);
 
-  if (basic){
-    paje_extended = false;
-    if (!disable_comments){
+  if (poti_basic_events){
+    if (poti_with_comments){
       fprintf (paje_file,
                "#\n"
                "# Trace created without extended events\n"
                "#\n");
     }
     return;
-  }else{
-    paje_extended = true;
   }
 }

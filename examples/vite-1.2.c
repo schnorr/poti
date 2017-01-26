@@ -19,10 +19,13 @@
 int main (int argc, char **argv)
 {
   //Vite-1.2 requires an old header definition (with no extended events)
-  //So:
-  //first parameter set to 1 means basic header with no extended events
-  //second parameter set to 1 means old header
-  poti_header (1, 1);
+  poti_init_custom (NULL,  //empty file name so stdout is chosen
+		    true,  //no extended events
+		    true,  //legacy header (old field names)
+		    false, //with comments (lines starting with #)
+		    true,  //events have aliases
+		    true); //relative timestamps
+  poti_header ();
 
   //Defining my types
   poti_DefineContainerType ("ROOT", "0", "ROOT");

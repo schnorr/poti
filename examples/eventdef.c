@@ -46,8 +46,7 @@ int main (int argc, char **argv)
   //The third parameter indicates a header with alias (if necessary)
   //should be generated The last parameter indicates the number of
   //extra fields (in this case, 0).
-  poti_set_alias (0);
-  poti_init (stdout);
+  poti_init ();
   poti_header_event (PAJE_DefineContainerType, 0, 0, 0);
   poti_header_event (PAJE_DefineStateType, 0, 0, 0);
   poti_header_event (PAJE_CreateContainer, 0, 0, 0);

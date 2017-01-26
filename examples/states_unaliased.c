@@ -18,8 +18,14 @@
 
 int main (int argc, char **argv)
 {
-  poti_set_alias (0);
-  poti_header (0, 0);
+  poti_init_custom (NULL,  //empty file name so stdout is chosen
+		    false, //so, allow extended events
+		    false, //so, output a modern header (with new field names)
+		    true,  //with comments (lines starting with #)
+		    false, //events have no aliases
+		    true); //relative timestamps
+
+  poti_header ();
   poti_DContainerType ("0", "PROCESS");
   poti_DStateType ("PROCESS", "VAR");
 

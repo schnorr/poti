@@ -39,7 +39,7 @@ static inline void print_event_type (int unique)
 void poti_UDefineContainerType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
-  if (poti_alias){
+  if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
@@ -50,7 +50,7 @@ void poti_UDefineContainerType (const int unique, const char *alias, const char 
 void poti_UDefineVariableType (const int unique, const char *alias, const char *containerType, const char *name, const char *color, int extra, ...)
 {
   print_event_type (unique);
-  if (poti_alias){
+  if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
@@ -62,7 +62,7 @@ void poti_UDefineVariableType (const int unique, const char *alias, const char *
 void poti_UDefineStateType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
-  if (poti_alias){
+  if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
@@ -73,7 +73,7 @@ void poti_UDefineStateType (const int unique, const char *alias, const char *con
 void poti_UDefineEventType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
-  if (poti_alias){
+  if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
@@ -84,7 +84,7 @@ void poti_UDefineEventType (const int unique, const char *alias, const char *con
 void poti_UDefineLinkType (const int unique, const char *alias, const char *containerType, const char *startContainerType, const char *endContainerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
-  if (poti_alias){
+  if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
@@ -97,7 +97,7 @@ void poti_UDefineLinkType (const int unique, const char *alias, const char *cont
 void poti_UDefineEntityValue (const int unique, const char *alias, const char *entityType, const char *name, const char *color, int extra, ...)
 {
   print_event_type (unique);
-  if (poti_alias){
+  if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", entityType);
@@ -110,7 +110,7 @@ void poti_UCreateContainer (const int unique, double timestamp, const char *alia
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
-  if (poti_alias){
+  if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", container);

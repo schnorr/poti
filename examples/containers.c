@@ -18,7 +18,8 @@
 
 int main (int argc, char **argv)
 {
-  poti_header (0, 0);
+  poti_init ();
+  poti_header ();
   poti_DefineContainerType ("ROOT", "0", "ROOT");
   poti_DefineContainerType ("PROCESS", "ROOT", "PROCESS");
   poti_DefineContainerType ("THREAD", "PROCESS", "THREAD");
@@ -42,5 +43,6 @@ int main (int argc, char **argv)
   
   poti_DestroyContainer (1.34, "ROOT", "root");
 
+  poti_close();
   return 0;
 }

@@ -18,7 +18,8 @@
 
 int main (int argc, char **argv)
 {
-  poti_header (0, 0);
+  poti_init ();
+  poti_header ();
   poti_DefineContainerType ("PROCESS", "0", "PROCESS");
   poti_DefineVariableType ("VAR", "PROCESS", "VAR", "1 0 0");
 

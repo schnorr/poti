@@ -18,7 +18,8 @@
 
 int main (int argc, char **argv)
 {
-  poti_header (0, 0);
+  poti_init ();
+  poti_header ();
   poti_DefineContainerType ("PROCESS", "0", "PROCESS");
   poti_DefineEventType ("EV", "PROCESS", "EV");
 
@@ -30,5 +31,6 @@ int main (int argc, char **argv)
   //change the timestamp of destroy to be larger than that of latest NewEvent
   poti_DestroyContainer (1.34, "PROCESS", "p1");
 
+  poti_close();
   return 0;
 }

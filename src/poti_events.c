@@ -19,7 +19,7 @@
 double paje_event_timestamp(double timestamp)
 {
   static double first_timestamp = -1;
-  if (!relative_timestamps) {
+  if (!poti_relative_timestamps) {
     return timestamp;
   }
   if (first_timestamp == -1) {

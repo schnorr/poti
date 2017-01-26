@@ -18,10 +18,16 @@
 
 int main (int argc, char **argv)
 {
+  //A call to poti_init() is equivalent to:
+  poti_init_custom (NULL,  //empty file name so stdout is chosen
+		    false, //so, allow extended events
+		    false, //so, output a modern header (with new field names)
+		    false,  //with comments (lines starting with #)
+		    true,  //events have aliases
+		    true); //relative timestamps
+
   //first, dump the pajeheader
-  //first parameter is a boolean indicating a basic header or not
-  //second parameter is a boolean indicating an old header or not
-  poti_header (0, 0);
+  poti_header ();
 
   //Defining my types
   poti_DefineContainerType ("ROOT", "0", "ROOT");
@@ -62,5 +68,6 @@ int main (int argc, char **argv)
   poti_DestroyContainer (1.23, "THREAD", "thread-1");
   poti_DestroyContainer (1.34, "ROOT", "root");
 
+  poti_close();
   return 0;
 }

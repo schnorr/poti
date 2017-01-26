@@ -1,6 +1,6 @@
 #!./tesh
 
-! setenv POTI_DISABLE_COMMENTS=1
+! setenv POTI_WITH_COMMENTS=0
 $ ./examples/variables
 > %EventDef PajeDefineContainerType 0
 > %       Alias string
@@ -31,11 +31,10 @@ $ ./examples/variables
 > %       Name string
 > %EndEventDef
 > %EventDef PajeDefineEntityValue 5
-> %       Time date
 > %       Alias string
-> %       Container string
 > %       Type string
 > %       Name string
+> %       Color color
 > %EndEventDef
 > %EventDef PajeCreateContainer 6
 > %       Time date
@@ -110,32 +109,6 @@ $ ./examples/variables
 > %       Container string
 > %       Type string
 > %       Value double
-> %EndEventDef
-> %EventDef PajePushState 18
-> %       Time date
-> %       Container string
-> %       Type string
-> %       Value string
-> %       Mark string
-> %EndEventDef
-> %EventDef PajeStartLink 19
-> %       Time date
-> %       Container string
-> %       Type string
-> %       StartContainer string
-> %       Value string
-> %       Key string
-> %       Size double
-> %EndEventDef
-> %EventDef PajeStartLink 20
-> %       Time date
-> %       Container string
-> %       Type string
-> %       StartContainer string
-> %       Value string
-> %       Key string
-> %       Size double
-> %       Mark string
 > %EndEventDef
 > 0 PROCESS 0 "PROCESS"
 > 1 VAR PROCESS "VAR" "1 0 0"

@@ -18,6 +18,7 @@
 #define __POTI_H
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <string.h>
 #include <stdbool.h>
 
@@ -48,15 +49,20 @@ typedef enum {
 } e_event_type;
 
 /*
- * Function to open output into a file, else output to stdout
+ * Default initialization function
  */
-int poti_open (const char* filename);
+bool poti_init (void);
 
 /*
- * Function to init poti with an external file descriptor
+ * Default initialization function with filename
  */
-int poti_init (FILE *file);
-
+bool poti_init_filename (const char *filename);
+  
+/*
+ * Customized initialization function
+ */
+bool poti_init_custom (const char *filename, bool basic_events, bool legacy_header, bool no_comments, bool with_alias, bool relative_timestamps);
+  
 /*
  * Function to close opened file
  */
@@ -65,17 +71,17 @@ void poti_close (void);
 /*
  * Function to generate the header
  */
-void poti_header (bool basic, bool old_header);
+void poti_header (void);
 
 /*
- * Function to generate the header
+ * Function to create a one-line comment
  */
-void poti_header_only (bool basic, bool old_header);
+void poti_comment (const char *format, ...);
 
 /*
  * poti_header_event: defines a new event, see examples/eventdef.c for details
  */
-int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...);
+int poti_header_event (int type, int num_extras, ...);
 
 /*
  * Main API: functions to define the type hierarchy and raise events

@@ -19,10 +19,13 @@
 int main (int argc, char **argv)
 {
   //Vite-SVN requires a trace file with no extended events)
-  //So:
-  //first parameter set to 1 means basic header with no extended events
-  //second parameter set to 0 means *new* header
-  poti_header (1, 0);
+  poti_init_custom (NULL,  //empty file name so stdout is chosen
+		    true,  //no extended events
+		    false,  //legacy header (old field names)
+		    false,  //with comments (lines starting with #)
+		    true,  //events have aliases
+		    true); //relative timestamps
+  poti_header ();
 
   //Defining my types
   poti_DefineContainerType ("ROOT", "0", "ROOT");
@@ -63,5 +66,6 @@ int main (int argc, char **argv)
   poti_DestroyContainer (1.23, "THREAD", "thread-1");
   poti_DestroyContainer (1.34, "ROOT", "root");
 
+  poti_close();
   return 0;
 }
