@@ -58,7 +58,7 @@ void poti_close ()
   paje_file = 0;
 }
 
-void poti_header (int basic, int old_header)
+void poti_header (bool basic, bool old_header)
 {
   if (getenv("POTI_DISABLE_COMMENTS")){
     disable_comments = true;
@@ -79,7 +79,7 @@ void poti_header (int basic, int old_header)
   poti_alias_initialized = true;
 }
 
-void poti_header_only (int basic, int old_header)
+void poti_header_only (bool basic, bool old_header)
 {
   _poti_header (basic, old_header);
 }

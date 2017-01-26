@@ -31,6 +31,6 @@ extern bool paje_extended;
 extern bool relative_timestamps;
 
 double paje_event_timestamp(double timestamp);
-void _poti_header (int basic, int old_header);
+void _poti_header (bool basic, bool old_header);
 
 #endif

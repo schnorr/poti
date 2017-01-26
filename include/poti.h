@@ -65,12 +65,12 @@ void poti_close (void);
 /*
  * Function to generate the header
  */
-void poti_header (int basic, int old_header);
+void poti_header (bool basic, bool old_header);
 
 /*
  * Function to generate the header
  */
-void poti_header_only (int basic, int old_header);
+void poti_header_only (bool basic, bool old_header);
 
 /*
  * poti_header_event: defines a new event, see examples/eventdef.c for details

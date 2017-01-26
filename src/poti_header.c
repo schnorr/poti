@@ -242,7 +242,7 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
 }
 
 /* entry point */
-void _poti_header(int basic, int old_header)
+void _poti_header(bool basic, bool old_header)
 {
   poti_header_event (PAJE_DefineContainerType, old_header, poti_alias, 0);
   poti_header_event (PAJE_DefineVariableType, old_header, poti_alias, 0);
