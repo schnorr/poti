@@ -78,11 +78,6 @@ void poti_header_only (bool basic, bool old_header);
 int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...);
 
 /*
- * poti_set_alias: control if aliases are used or not in events
- */
-void poti_set_alias (bool alias);
-
-/*
  * Main API: functions to define the type hierarchy and raise events
  */
 void poti_DefineContainerType (const char *alias, const char *containerType, const char *name);

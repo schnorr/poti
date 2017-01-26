@@ -21,7 +21,6 @@ bool disable_comments = false;
 FILE* paje_file = 0;
 bool paje_extended = false;
 bool relative_timestamps = true;
-static bool poti_alias_initialized = false;
 
 int poti_open (const char* filename)
 {
@@ -76,7 +75,6 @@ void poti_header (bool basic, bool old_header)
     fprintf(paje_file,"#POTI_GIT_DATE (date of the cmake configuration) %s\n", POTI_GITDATE);
   }
   poti_header_only (basic, old_header);
-  poti_alias_initialized = true;
 }
 
 void poti_header_only (bool basic, bool old_header)
@@ -84,12 +82,5 @@ void poti_header_only (bool basic, bool old_header)
   _poti_header (basic, old_header);
 }
 
-void poti_set_alias (bool alias)
 {
-  if (!poti_alias_initialized){
-    poti_alias = alias;
-    poti_alias_initialized = true;
-  }else{
-    fprintf (stderr, "#Poti Warning Message: %s should be called once and before header.\n", __FUNCTION__);
-  }
 }
