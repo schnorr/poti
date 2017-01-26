@@ -18,7 +18,6 @@
 #include "poti_private.h"
 
 int *identifiers = NULL;
-int disable_comments = 0;
 
 static char const *X[] = {
   "PajeDefineContainerType",
@@ -40,9 +39,6 @@ static char const *X[] = {
   "PajeEndLink",
   "PajeNewEvent",
 };
-
-extern FILE *paje_file;
-extern int paje_extended;
 
 static int poti_event_def_start (int type)
 {
@@ -77,7 +73,7 @@ static void poti_h_YYY_variable (void)
   fprintf(paje_file, "%%       Time date\n");
   fprintf(paje_file, "%%       Container string\n");
   fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       Value double\n"); 
+  fprintf(paje_file, "%%       Value double\n");
 }
 
 static void poti_h_YYY_create_container (bool alias)
@@ -97,7 +93,7 @@ static void poti_h_YYY_destroy_container (void)
   fprintf(paje_file, "%%       Type string\n");
   fprintf(paje_file, "%%       Name string\n");
 }
-  
+
 static void poti_h_YYY_link (bool legacy, bool start)
 {
   const char *kind_str;
@@ -201,32 +197,32 @@ int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...)
   /* Start of event definition */
   int identifier = poti_event_def_start (type);
   identifiers[type] = identifier;
-  
+
   /* Required args */
   switch (type){
   case PAJE_DefineContainerType: poti_h_YYY_def_container_type (legacy, alias); break;
   case PAJE_DefineVariableType:  poti_h_YYY_def_variable_type (legacy, alias); break;
-  case PAJE_DefineStateType:  
+  case PAJE_DefineStateType:
   case PAJE_DefineEventType:     poti_h_YYY_def_state_event_type (legacy, alias); break;
   case PAJE_DefineLinkType:      poti_h_YYY_def_link_type (legacy, alias); break;
   case PAJE_DefineEntityValue:   poti_h_YYY_def_entity_value (legacy, alias); break;
-  
+
   case PAJE_CreateContainer: poti_h_YYY_create_container (alias); break;
   case PAJE_DestroyContainer: poti_h_YYY_destroy_container (); break;
 
   case PAJE_NewEvent: //event fields are the same as variable
-  case PAJE_SetVariable: 
-  case PAJE_AddVariable: 
+  case PAJE_SetVariable:
+  case PAJE_AddVariable:
   case PAJE_SubVariable: poti_h_YYY_variable (); break;
-    
-  case PAJE_SetState:  
+
+  case PAJE_SetState:
   case PAJE_PushState: poti_h_YYY_set_push_state (); break;
-  
-  case PAJE_PopState:   
+
+  case PAJE_PopState:
   case PAJE_ResetState: poti_h_YYY_pop_reset_state (); break;
-  
-  case PAJE_StartLink: poti_h_YYY_link (legacy, POTI_TRUE); break;
-  case PAJE_EndLink:   poti_h_YYY_link (legacy, POTI_FALSE); break;
+
+  case PAJE_StartLink: poti_h_YYY_link (legacy, true); break;
+  case PAJE_EndLink:   poti_h_YYY_link (legacy, false); break;
 
   default: break;
   }
@@ -268,7 +264,7 @@ void _poti_header(int basic, int old_header)
   poti_header_event (PAJE_NewEvent, old_header, poti_alias, 0);
 
   if (basic){
-    paje_extended = 0;
+    paje_extended = false;
     if (!disable_comments){
       fprintf (paje_file,
                "#\n"
@@ -277,6 +273,6 @@ void _poti_header(int basic, int old_header)
     }
     return;
   }else{
-    paje_extended = 1;
+    paje_extended = true;
   }
 }

@@ -20,16 +20,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <poti.h>
+#include <stdbool.h>
 #include <poti_config.h>
 
-typedef int bool;
-#define POTI_TRUE 1
-#define POTI_FALSE 0
 extern int *identifiers;
-extern int poti_alias;
-extern int disable_comments;
+extern bool poti_alias;
+extern bool disable_comments;
 extern FILE *paje_file;
-extern int paje_extended;
+extern bool paje_extended;
+extern bool relative_timestamps;
 
 double paje_event_timestamp(double timestamp);
 void _poti_header (int basic, int old_header);

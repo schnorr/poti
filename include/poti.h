@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #if defined(__cplusplus)
 extern "C" {
@@ -45,7 +46,7 @@ typedef enum {
   PAJE_NewEvent,
   PAJE_FinalMarker //add new events above if necessary
 } e_event_type;
-  
+
 /*
  * Function to open output into a file, else output to stdout
  */
@@ -62,25 +63,25 @@ int poti_init (FILE *file);
 void poti_close (void);
 
 /*
- * Function to generate the header 
+ * Function to generate the header
  */
 void poti_header (int basic, int old_header);
- 
+
 /*
- * Function to generate the header 
+ * Function to generate the header
  */
 void poti_header_only (int basic, int old_header);
 
 /*
  * poti_header_event: defines a new event, see examples/eventdef.c for details
  */
-int poti_header_event (int type, int legacy, int alias, int num_extras, ...);
+int poti_header_event (int type, bool legacy, bool alias, int num_extras, ...);
 
 /*
  * poti_set_alias: control if aliases are used or not in events
  */
-void poti_set_alias (int alias);
-  
+void poti_set_alias (bool alias);
+
 /*
  * Main API: functions to define the type hierarchy and raise events
  */
@@ -149,7 +150,7 @@ void poti_EResetState    (double timestamp, const char *container, const char *t
 void poti_EStartLink     (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key);
 void poti_EEndLink       (double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key);
 
-  
+
 #if defined(__cplusplus)
 }
 #endif
