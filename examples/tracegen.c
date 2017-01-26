@@ -14,8 +14,11 @@
     You should have received a copy of the GNU Public License
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
+/* strdup, glibc >= 2.12 (13-12-2010) */
+#define _POSIX_C_SOURCE 200809L
 #include <poti.h>
 #include <stdlib.h>
+#include <string.h>
 #include <argp.h>
 
 static char doc[] = "Generates Paje Trace FILENAME, with a limite size of SIZE";
@@ -59,13 +62,13 @@ static struct argp argp = { options, parse_options, args_doc, doc, NULL, NULL, N
 int main (int argc, char **argv)
 {
   struct arguments arguments;
-  bzero (&arguments, sizeof(struct arguments));
+  memset (&arguments, 0, sizeof(struct arguments));
   arguments.targetSize = 0;
   if (argp_parse (&argp, argc, argv, 0, 0, &arguments) == ARGP_KEY_ERROR){
     fprintf(stderr, "%s, error during the parsing of parameters.\n", argv[0]);
     return 1;
   }
-  
+
   srand(1);
 
   //open file for writing
@@ -74,7 +77,7 @@ int main (int argc, char **argv)
     fprintf(stderr, "%s, can't open file %s for writing.\n", argv[0], arguments.filename);
     return 1;
   }
-  
+
   poti_init_filename (arguments.filename);
 
   poti_header ();
@@ -85,9 +88,9 @@ int main (int argc, char **argv)
   poti_SetState (0, "p1", "S", "I");
 
   double timestamp = INCREASE;
-  
+
   while (ftell(file) < arguments.targetSize){
-    //The size in bytes of these two events is 
+    //The size in bytes of these two events is
     poti_PushState (timestamp, "p1", "S", "M");
     timestamp += INCREASE;
     poti_PopState (timestamp, "p1", "S");
