@@ -93,11 +93,6 @@ void poti_PushState (double timestamp, const char *container, const char *type, 
   poti_UPushState (identifiers[PAJE_PushState], timestamp, container, type, value, 0);
 }
 
-void poti_PushStateMark (double timestamp, const char *container, const char *type, const char *value, const char *mark)
-{
-  poti_UPushState (identifiers[PAJE_PushState], timestamp, container, type, value, 1, mark);
-}
-
 void poti_PopState (double timestamp, const char *container, const char *type)
 {
   poti_UPopState (identifiers[PAJE_PopState], timestamp, container, type, 0);
@@ -111,11 +106,6 @@ void poti_ResetState (double timestamp, const char *container, const char *type)
 void poti_StartLink (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key)
 {
   poti_UStartLink (identifiers[PAJE_StartLink], timestamp, container, type, sourceContainer, value, key, 0);
-}
-
-void poti_StartLinkSizeMark (double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, const char *size, const char *mark)
-{
-  poti_UStartLink (identifiers[PAJE_StartLink], timestamp, container, type, sourceContainer, value, key, 2, size, mark);
 }
 
 void poti_EndLink (double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key)
