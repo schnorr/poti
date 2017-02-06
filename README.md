@@ -6,54 +6,49 @@ format](http://paje.sf.net). You should not use it directly during the
 tracing of your application (I won't stop you from doing this if you
 want). I recommend its use after traces are collected in your
 preferred file format (probably binary with memory buffers to avoid at
-a maximum the tracing intrusion).
+a maximum the tracing intrusion). Note that *the current version of
+Poti does not provide any kind of correctness verification in the
+parameters you pass for the library functions*, although we are
+working on this to support some error verification with minimal memory
+utilization.
 
-*The current version of Poti does not provide any kind of correctness
-verification in the parameters you pass for the library functions.*
+Raw textual traces in the Paje file format are hard to be exploited. A
+trace replay, in a simplistic simulation environment, is implemented
+by [the PajeNG suite](http://github.com/schnorr/pajeng/) through the
+`pj_dump` tool. It has an exhaustive set of semantic checks for
+verification of the compliance to the Paje file format and model. As
+output, the `pj_dump` dumps CSV files that can be easily exploited the
+way you want with your preferred programming language.
 
-Dependencies
+Clone, Compilation and Installation
+-----------------------------------
+
+    git clone git://github.com/schnorr/poti.git
+    cd poti
+    mkdir build
+    cd build
+    cmake ..
+    make install
+
+Customized Installation
 ------------
 
-Poti needs nothing in special, you should be able to compile it using
-your preferred compiler, and use it in any C program.
+Change the installation directory with:
 
-Clone and Compilation
----------------------
-
-No secrets here, just do:
-
-    $ git clone git://github.com/schnorr/poti.git
-    $ cd poti
-    $ mkdir build
-    $ cd build
-    $ cmake ..
-    $ make
-
-Installation
-------------
-
-The default installation directory is `/usr/local/`, but you are free
-to change that according to your needs. If you want so, you may tell
-cmake to use another installation directory with (I'm supposing you
-are inside the `build` directory in the cloned directory:
-
-    $ cmake -D CMAKE_INSTALL_PREFIX=/your/installation/directory/ ..
+    cmake -DCMAKE_INSTALL_PREFIX=/your/installation/directory/ ..
+    make install
 
 Examples
 --------
 
-There is one simple example in the `examples` directory. It is
-compiled by default when you compile Poti. Try it with (I'm supposing
-you are inside the `build` directory in the cloned directory, after
-the `cmake` and `make` command):
+There are many examples on how to use the poti API. You can execute them:
 
-    $ ./examples/states
+    ./examples/main_example
+    ./examples/states
 
 Roadmap
 -------
 
-This is the current TODO list:
-
 * Check all function parameters and trace consistency according to the [Paje file format](http://paje.sf.net)
 * Use data structures instead of strings for all parameters
-* Add variable and instantaneous functions currently not implemented
+* Alias management (get rid of user-generated aliases)
