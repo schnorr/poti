@@ -22,7 +22,7 @@
 #include <argp.h>
 
 static char doc[] = "Generates Paje Trace FILENAME, with a limite size of SIZE";
-static char args_doc[] = "FILENAME [SIZE]";
+static char args_doc[] = "";
 
 static struct argp_option options[] = {
   {"size", 's', "SIZE", 0, "The target size of the file in bytes.", 0},
