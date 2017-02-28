@@ -32,14 +32,14 @@ static struct argp_option options[] = {
 
 struct arguments {
   char *filename;
-  int targetSize;
+  long int targetSize;
 };
 
 static error_t parse_options (int key, char *arg, struct argp_state *state)
 {
   struct arguments *arguments = (struct arguments*)(state->input);
   switch (key){
-  case 's': arguments->targetSize = atoi(arg); break;
+  case 's': arguments->targetSize = atol(arg); break;
   case 'f': arguments->filename = strdup(arg); break;
   case ARGP_KEY_ARG:
     argp_usage (state);
