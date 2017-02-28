@@ -196,7 +196,6 @@ int poti_header_event (int type, int num_extras, ...)
 {
   /* Start of event definition */
   int identifier = poti_event_def_start (type);
-  identifiers[type] = identifier;
 
   /* Required args */
   switch (type){
@@ -241,27 +240,34 @@ int poti_header_event (int type, int num_extras, ...)
   return identifier;
 }
 
+static void _declare_default_event (int type)
+{
+  //identifiers vector with the correct unique
+  //identifiers for each event type should only be written here
+  identifiers[type] = poti_header_event (type, 0);
+}
+
 /* entry point */
 void _poti_header()
 {
-  poti_header_event (PAJE_DefineContainerType, 0);
-  poti_header_event (PAJE_DefineVariableType, 0);
-  poti_header_event (PAJE_DefineStateType, 0);
-  poti_header_event (PAJE_DefineEventType, 0);
-  poti_header_event (PAJE_DefineLinkType, 0);
-  poti_header_event (PAJE_DefineEntityValue, 0);
-  poti_header_event (PAJE_CreateContainer, 0);
-  poti_header_event (PAJE_DestroyContainer, 0);
-  poti_header_event (PAJE_SetVariable, 0);
-  poti_header_event (PAJE_AddVariable, 0);
-  poti_header_event (PAJE_SubVariable, 0);
-  poti_header_event (PAJE_SetState, 0);
-  poti_header_event (PAJE_PushState, 0);
-  poti_header_event (PAJE_PopState, 0);
-  poti_header_event (PAJE_ResetState, 0);
-  poti_header_event (PAJE_StartLink, 0);
-  poti_header_event (PAJE_EndLink, 0);
-  poti_header_event (PAJE_NewEvent, 0);
+  _declare_default_event (PAJE_DefineContainerType);
+  _declare_default_event (PAJE_DefineVariableType);
+  _declare_default_event (PAJE_DefineStateType);
+  _declare_default_event (PAJE_DefineEventType);
+  _declare_default_event (PAJE_DefineLinkType);
+  _declare_default_event (PAJE_DefineEntityValue);
+  _declare_default_event (PAJE_CreateContainer);
+  _declare_default_event (PAJE_DestroyContainer);
+  _declare_default_event (PAJE_SetVariable);
+  _declare_default_event (PAJE_AddVariable);
+  _declare_default_event (PAJE_SubVariable);
+  _declare_default_event (PAJE_SetState);
+  _declare_default_event (PAJE_PushState);
+  _declare_default_event (PAJE_PopState);
+  _declare_default_event (PAJE_ResetState);
+  _declare_default_event (PAJE_StartLink);
+  _declare_default_event (PAJE_EndLink);
+  _declare_default_event (PAJE_NewEvent);
 
   if (poti_basic_events){
     if (poti_with_comments){
