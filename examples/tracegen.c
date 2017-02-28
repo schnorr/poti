@@ -71,12 +71,8 @@ int main (int argc, char **argv)
 
   srand(1);
 
-  //open file for writing
-  FILE *file = fopen(arguments.filename, "w");
-  if (!file){
-    fprintf(stderr, "%s, can't open file %s for writing.\n", argv[0], arguments.filename);
-    return 1;
-  }
+  //Hack (get within poti's globals)
+  extern FILE* paje_file;
 
   poti_init_filename (arguments.filename);
 
@@ -89,7 +85,7 @@ int main (int argc, char **argv)
 
   double timestamp = INCREASE;
 
-  while (ftell(file) < arguments.targetSize){
+  while (ftell(paje_file) < arguments.targetSize){
     //The size in bytes of these two events is
     poti_PushState (timestamp, "p1", "S", "M");
     timestamp += INCREASE;
@@ -97,7 +93,7 @@ int main (int argc, char **argv)
     timestamp += INCREASE;
   }
   poti_DestroyContainer (timestamp, "P", "p1");
-  printf ("Output is %ld bytes (target was %d; %ld bytes more).\n", ftell(file), arguments.targetSize, ftell(file)-arguments.targetSize);
+  printf ("Output is %ld bytes (target was %ld; %ld bytes more).\n", ftell(paje_file), arguments.targetSize, ftell(paje_file)-arguments.targetSize);
   poti_close();
   free(arguments.filename);
   return 0;
