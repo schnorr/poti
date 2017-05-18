@@ -36,6 +36,29 @@ static inline void print_event_type (int unique)
     fprintf(paje_file, "\n"); \
   }
 
+static int has_spaces (const char *s)
+{
+  while (*s != '\0') {
+    if (isspace(*s)) return 1;
+    s++;
+  }
+  return 0;
+}
+
+#define PFS(A) protect_from_spaces(A)
+static char buffer[POTI_STR_SIZE];
+static const char *protect_from_spaces (const char *field)
+{
+  if (!has_spaces(field)) return field;
+  int len = strlen(field);
+  buffer[0] = '\"';
+  strncpy(buffer+1, field, POTI_STR_SIZE);
+  buffer[len+1] = '\"';
+  buffer[len+1+1] = '\0';
+  fprintf (stderr, "%s [%s] [%s]\n", __func__, field, buffer);
+  return buffer;
+}
+
 void poti_UDefineContainerType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
