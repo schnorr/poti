@@ -197,6 +197,9 @@ int poti_header_event (int type, int num_extras, ...)
   /* Start of event definition */
   int identifier = poti_event_def_start (type);
 
+  /* Save the new identifier, mapping to the type of event*/
+  identifiers[type] = identifier;
+
   /* Required args */
   switch (type){
   case PAJE_DefineContainerType: poti_h_YYY_def_container_type (); break;
@@ -242,9 +245,7 @@ int poti_header_event (int type, int num_extras, ...)
 
 static void _declare_default_event (int type)
 {
-  //identifiers vector with the correct unique
-  //identifiers for each event type should only be written here
-  identifiers[type] = poti_header_event (type, 0);
+  poti_header_event (type, 0);
 }
 
 /* entry point */
