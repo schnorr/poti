@@ -121,7 +121,6 @@ void poti_UAddVariable (const int unique, double timestamp, const char *containe
 void poti_USubVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...);
 void poti_USetState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...);
 void poti_UPushState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...);
-void poti_UPushState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...);
 void poti_UPopState (const int unique, double timestamp, const char *container, const char *type, int extra, ...);
 void poti_UResetState (const int unique, double timestamp, const char *container, const char *type, int extra, ...);
 void poti_UStartLink (const int unique, double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, int extra, ...);
