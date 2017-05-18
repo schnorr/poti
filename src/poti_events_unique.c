@@ -55,7 +55,6 @@ static const char *protect_from_spaces (const char *field)
   strncpy(buffer+1, field, POTI_STR_SIZE);
   buffer[len+1] = '\"';
   buffer[len+1+1] = '\0';
-  fprintf (stderr, "%s [%s] [%s]\n", __func__, field, buffer);
   return buffer;
 }
 
@@ -124,7 +123,7 @@ void poti_UDefineEntityValue (const int unique, const char *alias, const char *e
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", entityType);
-  fprintf(paje_file, " %s", name);
+  fprintf(paje_file, " %s", PFS(name));
   fprintf(paje_file, " \"%s\"", color);
   EXTRAFIELDS();
 }
