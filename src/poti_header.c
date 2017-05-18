@@ -19,7 +19,7 @@
 
 int *identifiers = NULL;
 
-static char const *X[] = {
+static char const *PajeEventNames[] = {
   "PajeDefineContainerType",
   "PajeDefineVariableType",
   "PajeDefineStateType",
@@ -43,7 +43,7 @@ static char const *X[] = {
 static int poti_event_def_start (int type)
 {
   static int type_generator = 0;
-  fprintf(paje_file, "%%EventDef %s %d\n", X[type], type_generator);
+  fprintf(paje_file, "%%EventDef %s %d\n", PajeEventNames[type], type_generator);
   return type_generator++;
 }
 
