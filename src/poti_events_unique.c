@@ -15,6 +15,7 @@
     along with Poti. If not, see <http://www.gnu.org/licenses/>.
 */
 #include <stdarg.h>
+#include <ctype.h>
 #include "poti_private.h"
 
 static inline void print_event_type (int unique)
