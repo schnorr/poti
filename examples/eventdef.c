@@ -22,6 +22,9 @@
  */
 int main (int argc, char **argv)
 {
+  // Init the library
+  poti_init ();
+
   //This is the way you do to declare a DefineContainerType
   //The first parameter is the type, one of these:
   /* PAJE_DefineContainerType, */
@@ -42,21 +45,17 @@ int main (int argc, char **argv)
   /* PAJE_StartLink, */
   /* PAJE_EndLink, */
   /* PAJE_NewEvent, */
-  //The second parameter indicates a legacy header should be generated.
-  //The third parameter indicates a header with alias (if necessary)
-  //should be generated The last parameter indicates the number of
-  //extra fields (in this case, 0).
-  poti_init ();
-  poti_header_event (PAJE_DefineContainerType, 0);
-  poti_header_event (PAJE_DefineStateType, 0);
-  poti_header_event (PAJE_CreateContainer, 0);
+  //The second parameter indicates if there are user extra fields.
+
+  poti_header_DeclareEvent (PAJE_DefineContainerType, 0);
+  poti_header_DeclareEvent (PAJE_DefineStateType, 0);
+  poti_header_DeclareEvent (PAJE_CreateContainer, 0);
 
   poti_DefineContainerType ("P", "0", "PROCESS");
   poti_DefineStateType ("S", "P", "STATE");
   poti_CreateContainer (0.0, "p1", "P", "0", "Process 1");
   
-  //Here we are generate three different events with extra fields
-  int pushStateMark = poti_header_event (PAJE_PushState, 1, "Mark string");
+  int myPushStateMark = poti_header_DeclareEvent (PAJE_PushState, 1, "Mark string");
 
   //Each of the above functions return the unique identifier of the
   //event definition.  This unique identifier should be then used in
@@ -65,6 +64,9 @@ int main (int argc, char **argv)
   //So, if you are handling with events with extra fields, you should
   //manage these unique identifiers yourself and raise events with
   //these function calls:
-  poti_UPushState (pushStateMark, 0.32, "p1", "S", "Start", 1, "MyMark");
+  poti_UPushState (myPushStateMark, 0.32, "p1", "S", "Start", 1, "MyMark");
+
+  // Close the library
+  poti_close();
   return 0;
 }
