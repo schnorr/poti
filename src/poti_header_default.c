@@ -209,5 +209,8 @@ void poti_default_fields_EndLink (void)
 
 void poti_default_fields_NewEvent (void)
 {
-  
+  fprintf(paje_file, "%%       Time date\n");
+  fprintf(paje_file, "%%       Container string\n");
+  fprintf(paje_file, "%%       Type string\n");
+  fprintf(paje_file, "%%       Value double\n");
 }
