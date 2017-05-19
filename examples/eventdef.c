@@ -64,7 +64,7 @@ int main (int argc, char **argv)
   //So, if you are handling with events with extra fields, you should
   //manage these unique identifiers yourself and generate events with
   //the following API:
-  poti_UPushState (myPushStateMark, 0.32, "p1", "S", "Start", 1, "MyMark");
+  poti_user_PushState (myPushStateMark, 0.32, "p1", "S", "Start", 1, "MyMark");
 
   // Close the library
   poti_close();

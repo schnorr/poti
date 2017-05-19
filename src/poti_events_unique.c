@@ -59,7 +59,7 @@ static const char *protect_from_spaces (const char *field)
   return buffer;
 }
 
-void poti_UDefineContainerType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
+void poti_user_DefineContainerType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
   if (poti_with_alias){
@@ -70,7 +70,7 @@ void poti_UDefineContainerType (const int unique, const char *alias, const char 
   EXTRAFIELDS();
 }
 
-void poti_UDefineVariableType (const int unique, const char *alias, const char *containerType, const char *name, const char *color, int extra, ...)
+void poti_user_DefineVariableType (const int unique, const char *alias, const char *containerType, const char *name, const char *color, int extra, ...)
 {
   print_event_type (unique);
   if (poti_with_alias){
@@ -82,7 +82,7 @@ void poti_UDefineVariableType (const int unique, const char *alias, const char *
   EXTRAFIELDS();
 }
 
-void poti_UDefineStateType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
+void poti_user_DefineStateType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
   if (poti_with_alias){
@@ -93,7 +93,7 @@ void poti_UDefineStateType (const int unique, const char *alias, const char *con
   EXTRAFIELDS();
 }
 
-void poti_UDefineEventType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
+void poti_user_DefineEventType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
   if (poti_with_alias){
@@ -104,7 +104,7 @@ void poti_UDefineEventType (const int unique, const char *alias, const char *con
   EXTRAFIELDS();
 }
 
-void poti_UDefineLinkType (const int unique, const char *alias, const char *containerType, const char *startContainerType, const char *endContainerType, const char *name, int extra, ...)
+void poti_user_DefineLinkType (const int unique, const char *alias, const char *containerType, const char *startContainerType, const char *endContainerType, const char *name, int extra, ...)
 {
   print_event_type (unique);
   if (poti_with_alias){
@@ -117,7 +117,7 @@ void poti_UDefineLinkType (const int unique, const char *alias, const char *cont
   EXTRAFIELDS();
 }
 
-void poti_UDefineEntityValue (const int unique, const char *alias, const char *entityType, const char *name, const char *color, int extra, ...)
+void poti_user_DefineEntityValue (const int unique, const char *alias, const char *entityType, const char *name, const char *color, int extra, ...)
 {
   print_event_type (unique);
   if (poti_with_alias){
@@ -129,7 +129,7 @@ void poti_UDefineEntityValue (const int unique, const char *alias, const char *e
   EXTRAFIELDS();
 }
 
-void poti_UCreateContainer (const int unique, double timestamp, const char *alias, const char *type, const char *container, const char *name, int extra, ...)
+void poti_user_CreateContainer (const int unique, double timestamp, const char *alias, const char *type, const char *container, const char *name, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -142,7 +142,7 @@ void poti_UCreateContainer (const int unique, double timestamp, const char *alia
   EXTRAFIELDS();
 }
 
-void poti_UDestroyContainer (const int unique, double timestamp, const char *type, const char *container, int extra, ...)
+void poti_user_DestroyContainer (const int unique, double timestamp, const char *type, const char *container, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -151,17 +151,7 @@ void poti_UDestroyContainer (const int unique, double timestamp, const char *typ
   EXTRAFIELDS();
 }
 
-void poti_USetVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...)
-{
-  print_event_type (unique);
-  fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
-  fprintf(paje_file, " %s", container);
-  fprintf(paje_file, " %s", type);
-  fprintf(paje_file, " %f", value);
-  EXTRAFIELDS();
-}
-
-void poti_UAddVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...)
+void poti_user_SetVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -171,7 +161,7 @@ void poti_UAddVariable (const int unique, double timestamp, const char *containe
   EXTRAFIELDS();
 }
 
-void poti_USubVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...)
+void poti_user_AddVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -181,7 +171,17 @@ void poti_USubVariable (const int unique, double timestamp, const char *containe
   EXTRAFIELDS();
 }
 
-void poti_USetState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
+void poti_user_SubVariable (const int unique, double timestamp, const char *container, const char *type, double value, int extra, ...)
+{
+  print_event_type (unique);
+  fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
+  fprintf(paje_file, " %s", container);
+  fprintf(paje_file, " %s", type);
+  fprintf(paje_file, " %f", value);
+  EXTRAFIELDS();
+}
+
+void poti_user_SetState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -191,7 +191,7 @@ void poti_USetState (const int unique, double timestamp, const char *container, 
   EXTRAFIELDS();
 }
 
-void poti_UPushState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
+void poti_user_PushState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -201,7 +201,7 @@ void poti_UPushState (const int unique, double timestamp, const char *container,
   EXTRAFIELDS();
 }
 
-void poti_UPopState (const int unique, double timestamp, const char *container, const char *type, int extra, ...)
+void poti_user_PopState (const int unique, double timestamp, const char *container, const char *type, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -210,7 +210,7 @@ void poti_UPopState (const int unique, double timestamp, const char *container, 
   EXTRAFIELDS();
 }
 
-void poti_UResetState (const int unique, double timestamp, const char *container, const char *type, int extra, ...)
+void poti_user_ResetState (const int unique, double timestamp, const char *container, const char *type, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -219,7 +219,7 @@ void poti_UResetState (const int unique, double timestamp, const char *container
   EXTRAFIELDS();
 }
 
-void poti_UStartLink (const int unique, double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, int extra, ...)
+void poti_user_StartLink (const int unique, double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -231,7 +231,7 @@ void poti_UStartLink (const int unique, double timestamp, const char *container,
   EXTRAFIELDS();
 }
 
-void poti_UEndLink (const int unique, double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key, int extra, ...)
+void poti_user_EndLink (const int unique, double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
@@ -243,7 +243,7 @@ void poti_UEndLink (const int unique, double timestamp, const char *container, c
   EXTRAFIELDS();
 }
 
-void poti_UNewEvent (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
+void poti_user_NewEvent (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
 {
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
