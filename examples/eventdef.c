@@ -51,19 +51,19 @@ int main (int argc, char **argv)
   poti_header_DeclareEvent (PAJE_DefineStateType, 0);
   poti_header_DeclareEvent (PAJE_CreateContainer, 0);
 
-  poti_DefineContainerType ("P", "0", "PROCESS");
-  poti_DefineStateType ("S", "P", "STATE");
-  poti_CreateContainer (0.0, "p1", "P", "0", "Process 1");
-  
   int myPushStateMark = poti_header_DeclareEvent (PAJE_PushState, 1, "Mark string");
 
   //Each of the above functions return the unique identifier of the
   //event definition.  This unique identifier should be then used in
   //the events section.
 
+  poti_DefineContainerType ("P", "0", "PROCESS");
+  poti_DefineStateType ("S", "P", "STATE");
+  poti_CreateContainer (0.0, "p1", "P", "0", "Process 1");
+
   //So, if you are handling with events with extra fields, you should
-  //manage these unique identifiers yourself and raise events with
-  //these function calls:
+  //manage these unique identifiers yourself and generate events with
+  //the following API:
   poti_UPushState (myPushStateMark, 0.32, "p1", "S", "Start", 1, "MyMark");
 
   // Close the library
