@@ -81,7 +81,7 @@ void poti_comment (const char *format, ...);
 /*
  * poti_header_event: defines a new event, see examples/eventdef.c for details
  */
-int poti_header_event (int type, int num_extras, ...);
+int poti_header_DeclareEvent (int type, int num_extras, ...);
 
 /*
  * Main API: functions to define the type hierarchy and raise events

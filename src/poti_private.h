@@ -34,6 +34,29 @@ extern bool poti_with_alias;
 extern bool poti_relative_timestamps;
 
 double paje_event_timestamp(double timestamp);
-void _poti_header (void);
+void poti_default_header_order (void);
+
+/* poti_header_default.c */
+int poti_default_event_Entry (int type);
+void poti_default_event_Closure (void);
+
+void poti_default_fields_DefineContainerType (void);
+void poti_default_fields_DefineVariableType (void);
+void poti_default_fields_DefineStateType (void);
+void poti_default_fields_DefineEventType (void);
+void poti_default_fields_DefineLinkType (void);
+void poti_default_fields_DefineEntityValue (void);
+void poti_default_fields_CreateContainer (void);
+void poti_default_fields_DestroyContainer (void);
+void poti_default_fields_SetVariable (void);
+void poti_default_fields_AddVariable (void);
+void poti_default_fields_SubVariable (void);
+void poti_default_fields_SetState (void);
+void poti_default_fields_PushState (void);
+void poti_default_fields_PopState (void);
+void poti_default_fields_ResetState (void);
+void poti_default_fields_StartLink (void);
+void poti_default_fields_EndLink (void);
+void poti_default_fields_NewEvent (void);
 
 #endif

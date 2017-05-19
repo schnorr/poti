@@ -19,214 +19,45 @@
 
 int *identifiers = NULL;
 
-static char const *PajeEventNames[] = {
-  "PajeDefineContainerType",
-  "PajeDefineVariableType",
-  "PajeDefineStateType",
-  "PajeDefineEventType",
-  "PajeDefineLinkType",
-  "PajeDefineEntityValue",
-  "PajeCreateContainer",
-  "PajeDestroyContainer",
-  "PajeSetVariable",
-  "PajeAddVariable",
-  "PajeSubVariable",
-  "PajeSetState",
-  "PajePushState",
-  "PajePopState",
-  "PajeResetState",
-  "PajeStartLink",
-  "PajeEndLink",
-  "PajeNewEvent",
-};
-
-static int poti_event_def_start (int type)
+int poti_header_DeclareEvent (int type, int num_extras, ...)
 {
-  static int type_generator = 0;
-  fprintf(paje_file, "%%EventDef %s %d\n", PajeEventNames[type], type_generator);
-  return type_generator++;
-}
+  /* Entry of event declaration */
+  int identifier = poti_default_event_Entry (type);
 
-static void poti_event_def_end ()
-{
-  fprintf(paje_file, "%%EndEventDef\n");
-  return;
-}
-
-static void poti_h_YYY_set_push_state (void)
-{
-  fprintf(paje_file, "%%       Time date\n");
-  fprintf(paje_file, "%%       Container string\n");
-  fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       Value string\n");
-}
-
-static void poti_h_YYY_pop_reset_state (void)
-{
-  fprintf(paje_file, "%%       Time date\n");
-  fprintf(paje_file, "%%       Container string\n");
-  fprintf(paje_file, "%%       Type string\n");
-}
-
-static void poti_h_YYY_variable (void)
-{
-  fprintf(paje_file, "%%       Time date\n");
-  fprintf(paje_file, "%%       Container string\n");
-  fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       Value double\n");
-}
-
-static void poti_h_YYY_create_container (void)
-{
-  fprintf(paje_file, "%%       Time date\n");
-  if(poti_with_alias){
-    fprintf(paje_file, "%%       Alias string\n");
-  }
-  fprintf(paje_file, "%%       Container string\n");
-  fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       Name string\n");
-}
-
-static void poti_h_YYY_destroy_container (void)
-{
-  fprintf(paje_file, "%%       Time date\n");
-  fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       Name string\n");
-}
-
-static void poti_h_YYY_link (bool start)
-{
-  const char *kind_str;
-  if (start){
-    if (poti_legacy_header){
-      kind_str = "SourceContainer";
-    }else{
-      kind_str = "StartContainer";
-    }
-  }else{
-    if (poti_legacy_header){
-      kind_str = "DestContainer";
-    }else{
-      kind_str = "EndContainer";
-    }
+  if (num_extras == 0) {
+    /* Save the new identifier only if we are in default decl. (no extras) */
+    identifiers[type] = identifier;
   }
 
-  fprintf(paje_file, "%%       Time date\n");
-  fprintf(paje_file, "%%       Container string\n");
-  fprintf(paje_file, "%%       Type string\n");
-  fprintf(paje_file, "%%       %s string\n", kind_str);
-  fprintf(paje_file, "%%       Value string\n");
-  fprintf(paje_file, "%%       Key string\n");
-}
-
-
-
-static void poti_h_YYY_def_container_type (void)
-{
-  if (poti_with_alias){
-    fprintf(paje_file, "%%       Alias string\n");
-  }
-  if (poti_legacy_header){
-    fprintf(paje_file, "%%       ContainerType string\n");
-  }else{
-    fprintf(paje_file, "%%       Type string\n");
-  }
-  fprintf(paje_file, "%%       Name string\n");
-}
-
-static void poti_h_YYY_def_variable_type (void)
-{
-  if (poti_with_alias){
-    fprintf(paje_file, "%%       Alias string\n");
-  }
-  if (poti_legacy_header){
-    fprintf(paje_file, "%%       ContainerType string\n");
-  }else{
-    fprintf(paje_file, "%%       Type string\n");
-  }
-  fprintf(paje_file, "%%       Name string\n");
-  fprintf(paje_file, "%%       Color color\n");
-}
-
-static void poti_h_YYY_def_state_event_type (void)
-{
-  if (poti_with_alias){
-    fprintf(paje_file, "%%       Alias string\n");
-  }
-  if (poti_legacy_header){
-    fprintf(paje_file, "%%       ContainerType string\n");
-  }else{
-    fprintf(paje_file, "%%       Type string\n");
-  }
-  fprintf(paje_file, "%%       Name string\n");
-}
-
-static void poti_h_YYY_def_link_type (void)
-{
-  if (poti_with_alias){
-    fprintf(paje_file, "%%       Alias string\n");
-  }
-  if (poti_legacy_header){
-    fprintf(paje_file, "%%       ContainerType string\n");
-    fprintf(paje_file, "%%       SourceContainerType string\n");
-    fprintf(paje_file, "%%       DestContainerType string\n");
-  }else{
-    fprintf(paje_file, "%%       Type string\n");
-    fprintf(paje_file, "%%       StartContainerType string\n");
-    fprintf(paje_file, "%%       EndContainerType string\n");
-  }
-  fprintf(paje_file, "%%       Name string\n");
-}
-
-static void poti_h_YYY_def_entity_value (void)
-{
-  if (poti_with_alias){
-    fprintf(paje_file, "%%       Alias string\n");
-  }
-  if (poti_legacy_header){
-    fprintf(paje_file, "%%       EntityType string\n");
-  }else{
-    fprintf(paje_file, "%%       Type string\n");
-  }
-  fprintf(paje_file, "%%       Name string\n");
-  fprintf(paje_file, "%%       Color color\n");
-}
-
-int poti_header_event (int type, int num_extras, ...)
-{
-  /* Start of event definition */
-  int identifier = poti_event_def_start (type);
-
-  /* Save the new identifier, mapping to the type of event*/
-  identifiers[type] = identifier;
-
-  /* Required args */
+  /* Default fields declaration */
   switch (type){
-  case PAJE_DefineContainerType: poti_h_YYY_def_container_type (); break;
-  case PAJE_DefineVariableType:  poti_h_YYY_def_variable_type (); break;
-  case PAJE_DefineStateType:
-  case PAJE_DefineEventType:     poti_h_YYY_def_state_event_type (); break;
-  case PAJE_DefineLinkType:      poti_h_YYY_def_link_type (); break;
-  case PAJE_DefineEntityValue:   poti_h_YYY_def_entity_value (); break;
+  case PAJE_DefineContainerType: poti_default_fields_DefineContainerType (); break;
+  case PAJE_DefineVariableType:  poti_default_fields_DefineVariableType (); break;
+  case PAJE_DefineStateType:     poti_default_fields_DefineStateType (); break;
+  case PAJE_DefineEventType:     poti_default_fields_DefineEventType (); break;
+  case PAJE_DefineLinkType:      poti_default_fields_DefineLinkType (); break;
+  case PAJE_DefineEntityValue:   poti_default_fields_DefineEntityValue (); break;
 
-  case PAJE_CreateContainer: poti_h_YYY_create_container (); break;
-  case PAJE_DestroyContainer: poti_h_YYY_destroy_container (); break;
+  case PAJE_CreateContainer:     poti_default_fields_CreateContainer (); break;
+  case PAJE_DestroyContainer:    poti_default_fields_DestroyContainer (); break;
 
-  case PAJE_NewEvent: //event fields are the same as variable
-  case PAJE_SetVariable:
-  case PAJE_AddVariable:
-  case PAJE_SubVariable: poti_h_YYY_variable (); break;
+  case PAJE_SetVariable:         poti_default_fields_SetVariable (); break;
+  case PAJE_AddVariable:         poti_default_fields_AddVariable (); break;
+  case PAJE_SubVariable:         poti_default_fields_SubVariable (); break;
 
-  case PAJE_SetState:
-  case PAJE_PushState: poti_h_YYY_set_push_state (); break;
+  case PAJE_SetState:            poti_default_fields_SetState (); break;
+  case PAJE_PushState:           poti_default_fields_PushState (); break;
+  case PAJE_PopState:            poti_default_fields_PopState (); break;
+  case PAJE_ResetState:
 
-  case PAJE_PopState:
-  case PAJE_ResetState: poti_h_YYY_pop_reset_state (); break;
+  case PAJE_StartLink:           poti_default_fields_StartLink (); break;
+  case PAJE_EndLink:             poti_default_fields_EndLink (); break;
 
-  case PAJE_StartLink: poti_h_YYY_link (true); break;
-  case PAJE_EndLink:   poti_h_YYY_link (false); break;
+  case PAJE_NewEvent:            poti_default_fields_NewEvent (); break;
 
-  default: break;
+  default:
+    fprintf(stderr, "%s: Type %d given is unknown\n", __func__, type);
+    abort();
   }
 
   /* Extra args (user responsibility) */
@@ -238,45 +69,35 @@ int poti_header_event (int type, int num_extras, ...)
   }
   va_end (arguments);
 
-  /* End of event definition */
-  poti_event_def_end ();
+  /* End of event declaration */
+  poti_default_event_Closure ();
   return identifier;
 }
 
-static void _declare_default_event (int type)
+/* Default event declaration order */
+void poti_default_header_order()
 {
-  poti_header_event (type, 0);
-}
+  /* Put more frequent events first */
+  poti_header_DeclareEvent (PAJE_PushState, 0);
+  poti_header_DeclareEvent (PAJE_PopState, 0);
+  poti_header_DeclareEvent (PAJE_SetState, 0);
+  poti_header_DeclareEvent (PAJE_ResetState, 0);
 
-/* entry point */
-void _poti_header()
-{
-  _declare_default_event (PAJE_DefineContainerType);
-  _declare_default_event (PAJE_DefineVariableType);
-  _declare_default_event (PAJE_DefineStateType);
-  _declare_default_event (PAJE_DefineEventType);
-  _declare_default_event (PAJE_DefineLinkType);
-  _declare_default_event (PAJE_DefineEntityValue);
-  _declare_default_event (PAJE_CreateContainer);
-  _declare_default_event (PAJE_DestroyContainer);
-  _declare_default_event (PAJE_SetVariable);
-  _declare_default_event (PAJE_AddVariable);
-  _declare_default_event (PAJE_SubVariable);
-  _declare_default_event (PAJE_SetState);
-  _declare_default_event (PAJE_PushState);
-  _declare_default_event (PAJE_PopState);
-  _declare_default_event (PAJE_ResetState);
-  _declare_default_event (PAJE_StartLink);
-  _declare_default_event (PAJE_EndLink);
-  _declare_default_event (PAJE_NewEvent);
+  poti_header_DeclareEvent (PAJE_AddVariable, 0);
+  poti_header_DeclareEvent (PAJE_SubVariable, 0);
+  poti_header_DeclareEvent (PAJE_SetVariable, 0);
 
-  if (poti_basic_events){
-    if (poti_with_comments){
-      fprintf (paje_file,
-               "#\n"
-               "# Trace created without extended events\n"
-               "#\n");
-    }
-    return;
-  }
+  poti_header_DeclareEvent (PAJE_StartLink, 0);
+  poti_header_DeclareEvent (PAJE_EndLink, 0);
+  poti_header_DeclareEvent (PAJE_NewEvent, 0);
+
+  poti_header_DeclareEvent (PAJE_CreateContainer, 0);
+  poti_header_DeclareEvent (PAJE_DestroyContainer, 0);
+  
+  poti_header_DeclareEvent (PAJE_DefineContainerType, 0);
+  poti_header_DeclareEvent (PAJE_DefineVariableType, 0);
+  poti_header_DeclareEvent (PAJE_DefineStateType, 0);
+  poti_header_DeclareEvent (PAJE_DefineEventType, 0);
+  poti_header_DeclareEvent (PAJE_DefineLinkType, 0);
+  poti_header_DeclareEvent (PAJE_DefineEntityValue, 0);
 }
