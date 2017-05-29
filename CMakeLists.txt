@@ -20,8 +20,6 @@ enable_testing()
 EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log --oneline -1 2>/dev/null || echo '(unknown)'" OUTPUT_VARIABLE "POTI_GITVERSION")
 EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log -n 1 --format=%ai 2>/dev/null || echo '(unknown)'" OUTPUT_VARIABLE "POTI_GITDATE")
 
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -Wall -Wextra -Wpedantic -Wmissing-prototypes -Wmissing-declarations -Wwrite-strings -Wno-unused-function -Wno-unused-parameter -Wno-strict-aliasing -Wno-format-nonliteral -Werror -Wformat -Werror=format-security -Wdate-time")
-
 # poti_config.h.in file
 CONFIGURE_FILE("${poti_SOURCE_DIR}/include/poti_config.h.in" "${CMAKE_BINARY_DIR}/include/poti_config.h" ESCAPE_QUOTES @ONLY IMMEDIATE)
 
