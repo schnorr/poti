@@ -2,93 +2,24 @@
 
 ! setenv POTI_WITH_COMMENTS=0
 $ ./examples/variables
-> %EventDef PajeDefineContainerType 0
-> %       Alias string
-> %       Type string
-> %       Name string
-> %EndEventDef
-> %EventDef PajeDefineVariableType 1
-> %       Alias string
-> %       Type string
-> %       Name string
-> %       Color color
-> %EndEventDef
-> %EventDef PajeDefineStateType 2
-> %       Alias string
-> %       Type string
-> %       Name string
-> %EndEventDef
-> %EventDef PajeDefineEventType 3
-> %       Alias string
-> %       Type string
-> %       Name string
-> %EndEventDef
-> %EventDef PajeDefineLinkType 4
-> %       Alias string
-> %       Type string
-> %       StartContainerType string
-> %       EndContainerType string
-> %       Name string
-> %EndEventDef
-> %EventDef PajeDefineEntityValue 5
-> %       Alias string
-> %       Type string
-> %       Name string
-> %       Color color
-> %EndEventDef
-> %EventDef PajeCreateContainer 6
-> %       Time date
-> %       Alias string
-> %       Container string
-> %       Type string
-> %       Name string
-> %EndEventDef
-> %EventDef PajeDestroyContainer 7
-> %       Time date
-> %       Type string
-> %       Name string
-> %EndEventDef
-> %EventDef PajeSetVariable 8
-> %       Time date
-> %       Container string
-> %       Type string
-> %       Value double
-> %EndEventDef
-> %EventDef PajeAddVariable 9
-> %       Time date
-> %       Container string
-> %       Type string
-> %       Value double
-> %EndEventDef
-> %EventDef PajeSubVariable 10
-> %       Time date
-> %       Container string
-> %       Type string
-> %       Value double
-> %EndEventDef
-> %EventDef PajeSetState 11
+> %EventDef PajePushState 0
 > %       Time date
 > %       Container string
 > %       Type string
 > %       Value string
 > %EndEventDef
-> %EventDef PajePushState 12
+> %EventDef PajePopState 1
+> %       Time date
+> %       Container string
+> %       Type string
+> %EndEventDef
+> %EventDef PajeSetState 2
 > %       Time date
 > %       Container string
 > %       Type string
 > %       Value string
 > %EndEventDef
-> %EventDef PajePopState 13
-> %       Time date
-> %       Container string
-> %       Type string
-> %EndEventDef
-> %EventDef PajeResetState 14
-> %       Time date
-> %       Container string
-> %       Type string
-> %EndEventDef
-> %EventDef PajeStartLink 15
+> %EventDef PajeResetState 3
 > %       Time date
 > %       Container string
 > %       Type string
@@ -96,7 +27,33 @@ $ ./examples/variables
 > %       Value string
 > %       Key string
 > %EndEventDef
-> %EventDef PajeEndLink 16
+> %EventDef PajeAddVariable 4
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeSubVariable 5
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeSetVariable 6
+> %       Time date
+> %       Container string
+> %       Type string
+> %       Value double
+> %EndEventDef
+> %EventDef PajeStartLink 7
+> %       Time date
+> %       Container string
+> %       Type string
+> %       StartContainer string
+> %       Value string
+> %       Key string
+> %EndEventDef
+> %EventDef PajeEndLink 8
 > %       Time date
 > %       Container string
 > %       Type string
@@ -104,17 +61,62 @@ $ ./examples/variables
 > %       Value string
 > %       Key string
 > %EndEventDef
-> %EventDef PajeNewEvent 17
+> %EventDef PajeNewEvent 9
 > %       Time date
 > %       Container string
 > %       Type string
 > %       Value double
 > %EndEventDef
-> 0 PROCESS 0 "PROCESS"
-> 1 VAR PROCESS "VAR" "1 0 0"
-> 6 0.000000000 p1 0 PROCESS "p1"
-> 8 0.000000000 p1 VAR 10.000000
-> 9 0.320000000 p1 VAR 3.000000
-> 10 0.530000000 p1 VAR 2.000000
-> 7 1.340000000 PROCESS p1
-
+> %EventDef PajeCreateContainer 10
+> %       Time date
+> %       Alias string
+> %       Container string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDestroyContainer 11
+> %       Time date
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineContainerType 12
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineVariableType 13
+> %       Alias string
+> %       Type string
+> %       Name string
+> %       Color color
+> %EndEventDef
+> %EventDef PajeDefineStateType 14
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineEventType 15
+> %       Alias string
+> %       Type string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineLinkType 16
+> %       Alias string
+> %       Type string
+> %       StartContainerType string
+> %       EndContainerType string
+> %       Name string
+> %EndEventDef
+> %EventDef PajeDefineEntityValue 17
+> %       Alias string
+> %       Type string
+> %       Name string
+> %       Color color
+> %EndEventDef
+> 12 PROCESS 0 PROCESS
+> 13 VAR PROCESS VAR "1 0 0"
+> 10 0.000000000 p1 0 PROCESS p1
+> 6 0.000000000 p1 VAR 10.000000
+> 4 0.320000000 p1 VAR 3.000000
+> 5 0.530000000 p1 VAR 2.000000
+> 11 1.340000000 PROCESS p1
