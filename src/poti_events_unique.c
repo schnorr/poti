@@ -46,9 +46,8 @@ static int has_spaces (const char *s)
   return 0;
 }
 
-#define PFS(A) protect_from_spaces(A)
-static char buffer[POTI_STR_SIZE];
-static const char *protect_from_spaces (const char *field)
+#define PFS(A,BUF,LEN) protect_from_spaces(A,BUF,LEN)
+static const char *protect_from_spaces (const char *field, char *buffer, int bufferlen)
 {
   if (!has_spaces(field)) return field;
   int len = strlen(field);
@@ -61,51 +60,56 @@ static const char *protect_from_spaces (const char *field)
 
 void poti_user_DefineContainerType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
-  fprintf(paje_file, " %s", PFS(name));
+  fprintf(paje_file, " %s", PFS(name, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
 void poti_user_DefineVariableType (const int unique, const char *alias, const char *containerType, const char *name, const char *color, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
-  fprintf(paje_file, " %s", PFS(name));
-  fprintf(paje_file, " %s", PFS(color));
+  fprintf(paje_file, " %s", PFS(name, buffer, POTI_STR_SIZE));
+  fprintf(paje_file, " %s", PFS(color, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
 void poti_user_DefineStateType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
-  fprintf(paje_file, " %s", PFS(name));
+  fprintf(paje_file, " %s", PFS(name, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
 void poti_user_DefineEventType (const int unique, const char *alias, const char *containerType, const char *name, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", containerType);
-  fprintf(paje_file, " %s", PFS(name));
+  fprintf(paje_file, " %s", PFS(name, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
 void poti_user_DefineLinkType (const int unique, const char *alias, const char *containerType, const char *startContainerType, const char *endContainerType, const char *name, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   if (poti_with_alias){
     fprintf(paje_file," %s", alias);
@@ -113,24 +117,26 @@ void poti_user_DefineLinkType (const int unique, const char *alias, const char *
   fprintf(paje_file, " %s", containerType);
   fprintf(paje_file, " %s", startContainerType);
   fprintf(paje_file, " %s", endContainerType);
-  fprintf(paje_file, " %s", PFS(name));
+  fprintf(paje_file, " %s", PFS(name, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
 void poti_user_DefineEntityValue (const int unique, const char *alias, const char *entityType, const char *name, const char *color, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   if (poti_with_alias){
     fprintf(paje_file," %s", alias);
   }
   fprintf(paje_file, " %s", entityType);
-  fprintf(paje_file, " %s", PFS(name));
-  fprintf(paje_file, " %s", PFS(color));
+  fprintf(paje_file, " %s", PFS(name, buffer, POTI_STR_SIZE));
+  fprintf(paje_file, " %s", PFS(color, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
 void poti_user_CreateContainer (const int unique, double timestamp, const char *alias, const char *type, const char *container, const char *name, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
   if (poti_with_alias){
@@ -138,7 +144,7 @@ void poti_user_CreateContainer (const int unique, double timestamp, const char *
   }
   fprintf(paje_file, " %s", container);
   fprintf(paje_file, " %s", type);
-  fprintf(paje_file, " %s", PFS(name));
+  fprintf(paje_file, " %s", PFS(name, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
@@ -183,21 +189,23 @@ void poti_user_SubVariable (const int unique, double timestamp, const char *cont
 
 void poti_user_SetState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
   fprintf(paje_file, " %s", container);
   fprintf(paje_file, " %s", type);
-  fprintf(paje_file, " %s", PFS(value));
+  fprintf(paje_file, " %s", PFS(value, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
 void poti_user_PushState (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
   fprintf(paje_file, " %s", container);
   fprintf(paje_file, " %s", type);
-  fprintf(paje_file, " %s", PFS(value));
+  fprintf(paje_file, " %s", PFS(value, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
@@ -221,35 +229,38 @@ void poti_user_ResetState (const int unique, double timestamp, const char *conta
 
 void poti_user_StartLink (const int unique, double timestamp, const char *container, const char *type, const char *sourceContainer, const char *value, const char *key, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
   fprintf(paje_file, " %s", container);
   fprintf(paje_file, " %s", type);
   fprintf(paje_file, " %s", sourceContainer);
-  fprintf(paje_file, " %s", PFS(value));
+  fprintf(paje_file, " %s", PFS(value, buffer, POTI_STR_SIZE));
   fprintf(paje_file, " %s", key);
   EXTRAFIELDS();
 }
 
 void poti_user_EndLink (const int unique, double timestamp, const char *container, const char *type, const char *endContainer, const char *value, const char *key, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
   fprintf(paje_file, " %s", container);
   fprintf(paje_file, " %s", type);
   fprintf(paje_file, " %s", endContainer);
-  fprintf(paje_file, " %s", PFS(value));
+  fprintf(paje_file, " %s", PFS(value, buffer, POTI_STR_SIZE));
   fprintf(paje_file, " %s", key);
   EXTRAFIELDS();
 }
 
 void poti_user_NewEvent (const int unique, double timestamp, const char *container, const char *type, const char *value, int extra, ...)
 {
+  char buffer[POTI_STR_SIZE];
   print_event_type (unique);
   fprintf(paje_file, " %.9f", paje_event_timestamp(timestamp));
   fprintf(paje_file, " %s", container);
   fprintf(paje_file, " %s", type);
-  fprintf(paje_file, " %s", PFS(value));
+  fprintf(paje_file, " %s", PFS(value, buffer, POTI_STR_SIZE));
   EXTRAFIELDS();
 }
 
