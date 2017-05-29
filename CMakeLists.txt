@@ -38,7 +38,7 @@ SET_TARGET_PROPERTIES(
   poti
 PROPERTIES
 # bump when new function are added in the library
-  VERSION 4.6
+  VERSION 4.8
 # bump when ABI is broken (symbols removed or parameters changed)
   SOVERSION 8
 )
