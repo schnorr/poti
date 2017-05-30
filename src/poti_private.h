@@ -23,8 +23,6 @@
 #include <stdbool.h>
 #include <poti_config.h>
 
-#define POTI_STR_SIZE 1024
-
 extern int *identifiers;
 extern FILE *paje_file;
 extern bool poti_basic_events;
