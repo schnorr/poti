@@ -31,5 +31,6 @@ int main (int argc, char **argv)
 
   poti_DestroyContainer (1.34, "PROCESS", "p1");
 
+  poti_close ();
   return 0;
 }

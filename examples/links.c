@@ -34,5 +34,6 @@ int main (int argc, char **argv)
   poti_StartLink (1.04, "0", "LINK", "p1", "c", "myKey-002");
   poti_EndLink (2.10, "0", "LINK", "p3",   "c", "myKey-002");
 
+  poti_close ();
   return 0;
 }

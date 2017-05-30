@@ -66,5 +66,6 @@ int main (int argc, char **argv)
   poti_DestroyContainer (1.23, "THREAD", "thread-1");
   poti_DestroyContainer (1.34, "ROOT", "root");
 
+  poti_close ();
   return 0;
 }

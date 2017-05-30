@@ -37,5 +37,6 @@ int main (int argc, char **argv)
   poti_EPopState (0.99, "p1", "VAR");
   poti_EDestroyContainer (1.34, "PROCESS", "p1");
 
+  poti_close ();
   return 0;
 }
