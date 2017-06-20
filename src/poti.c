@@ -110,8 +110,7 @@ void poti_close ()
 
 void poti_header ()
 {
-  poti_comment("POTI_GIT_VERSION %s", POTI_GITVERSION);
-  poti_comment("POTI_GIT_DATE (date of the cmake configuration) %s", POTI_GITDATE);
+  poti_comment("POTI_VERSION %s", POTI_VERSION);
   poti_default_header_order();
 }
 

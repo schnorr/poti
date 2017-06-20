@@ -17,8 +17,6 @@ PROJECT(poti)
 SET(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 enable_testing()
 
-
-
 SET(POTI_SRC src/poti.c src/poti_header.c src/poti_header_default.c src/poti_events.c src/poti_events_unique.c src/poti_events_unaliased.c)
 SET(POTI_HEADERS include/poti.h ${CMAKE_BINARY_DIR}/include/poti_config.h)
 
@@ -38,8 +36,7 @@ PROPERTIES
 # bump when the API change (new functions in the header file)
 SET(POTI_APIVERSION 6)
 
-EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log --oneline -1 2>/dev/null || echo '(unknown)'" OUTPUT_VARIABLE "POTI_GITVERSION")
-EXEC_PROGRAM("git --git-dir=${PROJECT_SOURCE_DIR}/.git log -n 1 --format=%ai 2>/dev/null || echo '(unknown)'" OUTPUT_VARIABLE "POTI_GITDATE")
+get_target_property(POTI_VERSION poti VERSION)
 
 # poti_config.h.in file
 CONFIGURE_FILE("${poti_SOURCE_DIR}/include/poti_config.h.in" "${CMAKE_BINARY_DIR}/include/poti_config.h" ESCAPE_QUOTES @ONLY IMMEDIATE)
