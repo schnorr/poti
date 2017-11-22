@@ -40,10 +40,11 @@ int main (int argc, char **argv)
   struct test *tests = malloc(sizeof(struct test));
   int ntests = 1;
 
-  for (int a = 0; a < 2; a++){
-    for (int b = 0; b < 2; b++){
-      for (int c = 0; c < 2; c++){
-	for (int d = 0; d < 2; d++){
+  int a, b, c, d;
+  for (a = 0; a < 2; a++){
+    for (b = 0; b < 2; b++){
+      for (c = 0; c < 2; c++){
+	for (d = 0; d < 2; d++){
 	  tests[ntests-1].poti_basic_events = a;
 	  tests[ntests-1].poti_legacy_header = b;
 	  tests[ntests-1].poti_with_comments = false;
